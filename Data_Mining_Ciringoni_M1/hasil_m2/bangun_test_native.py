@@ -64,6 +64,7 @@ def build_test(archive_path, cache, output):
         if counts != {"paired": SPLIT_COUNTS["test"]}:
             raise ValueError(f"Incomplete native test export: {dict(counts)}")
         images, annotations = [], []
+        clipped = 0
         for image_id, (source, row) in enumerate(zip(test, results, strict=True), 1):
             stem = source["stem"]
             filename = f"{stem}.jpg"
@@ -93,9 +94,17 @@ def build_test(archive_path, cache, output):
                     if cls != 0 or any(abs(a - b) > 0.0001 for a, b in zip(original, restored, strict=True)):
                         raise ValueError("Native test box failed inverse geometry check")
             for _, x, y, w, h in boxes:
+                relative = (x - w / 2, y - h / 2, x + w / 2, y + h / 2)
+                x0, y0, x1, y1 = bounded = (
+                    max(0.0, relative[0]), max(0.0, relative[1]),
+                    min(1.0, relative[2]), min(1.0, relative[3]),
+                )
+                clipped += bounded != relative
+                w, h = (x1 - x0) * 640, (y1 - y0) * 640
+                if min(w, h) <= 0:
+                    raise ValueError("Empty M1 reference box after clipping")
                 annotations.append({"id": len(annotations) + 1, "image_id": image_id, "category_id": 1,
-                                    "bbox": [(x - w / 2) * 640, (y - h / 2) * 640, w * 640, h * 640],
-                                    "area": w * h * 640**2, "iscrowd": 0})
+                                    "bbox": [x0 * 640, y0 * 640, w, h], "area": w * h, "iscrowd": 0})
         if len(annotations) != 1159:
             raise ValueError("UTS test ground truth must contain 1,159 boxes")
     for size in (640, 1280):
@@ -105,7 +114,8 @@ def build_test(archive_path, cache, output):
     gt.write_text(json.dumps({"info": {"description": "Held-out UTS test in M1 coordinates"},
                               "images": images, "annotations": annotations,
                               "categories": [{"id": 1, "name": "infected"}]}) + "\n", encoding="utf-8")
-    report.update(ready=True, images=len(images), boxes=len(annotations), ground_truth_sha256=sha256(gt))
+    report.update(ready=True, images=len(images), boxes=len(annotations),
+                  reference_clipped_boxes=clipped, ground_truth_sha256=sha256(gt))
     audit_path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({key: value for key, value in report.items() if key != "files"}), flush=True)
 
