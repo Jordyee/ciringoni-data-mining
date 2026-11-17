@@ -23,6 +23,19 @@ Setelah clone, jalankan semua perintah Python di bawah dari `ciringoni-data-mini
 
 Skrip ada di [hasil_m2](Data_Mining_Ciringoni_M1/hasil_m2). Lingkungan teruji memakai Windows, Python 3.13, Ultralytics 8.4.210, PyTorch 2.9.1, torchvision 0.24.1, dan pycocotools. Pemulihan data memakai Python 3.11, Pillow, dan Windows HEIF Decoder. SAHI memakai versi 0.14.0. Untuk benchmark, jalankan proses CPU secara eksklusif.
 
+## Serah terima ke komputer lain
+
+1. Clone versi terbaru repo dan gunakan README, handoff root, notebook, serta skrip dari GitHub sebagai acuan. Notebook di paket lanjutan dibuat sebelum audit dokumentasi terakhir; handoff internal di arsip juga mendahului migrasi GitHub.
+2. Kirim `Ciringoni_Paket_Lanjutan.zip` dan `UTS_DM_kelompok_ciringoni_hasil.zip` secara terpisah melalui penyimpanan tim. Keduanya tersedia di komputer asal; ZIP UTS tidak termasuk di paket lanjutan. Paket lanjutan lolos pemeriksaan CRC dan membawa checkpoint E2 serta ground truth validation yang cocok dengan berkas lokal.
+3. Dari paket lanjutan, salin artefak yang diabaikan Git ke folder proyek pada clone: checkpoint, hasil evaluasi terperinci, ground truth, dan bobot awal. Pertahankan berkas sumber dan dokumentasi versi GitHub. Pastikan `hasil_m1/coco_val_gt.json` memuat 356 gambar dan 2.205 anotasi.
+4. Cache sumber, dataset native, dan `audit_pasangan_e2.json` tidak termasuk di paket. Pindahkan cache/dataset native secara terpisah atau bangun ulang mengikuti bagian reproduksi bila akses sumber tersedia. Sesuaikan path YAML dan manifest pada komputer penerima. Lanjut setelah audit `ready=true`, 1.600 pasangan, dan ID train/val cocok pada kedua resolusi.
+5. Cocokkan SHA-256 checkpoint setelah dipindahkan. Lokasi relatif terhadap `Data_Mining_Ciringoni_M1`:
+
+| Checkpoint | SHA-256 |
+| --- | --- |
+| `hasil_m2/eksperimen_e2_native/runs/E2_native_1280/weights/best.pt` | `0bd467aef478ebd26555074030ff653c52cf05ad5380fcbe66057b3c995f264e` |
+| `hasil_m2/eksperimen_e2_native/runs/E2_control_native_640/weights/best.pt` | `56568daf2c930033058a3b0468f1357069b1110ce2a1e07e705405547f46d34f` |
+
 ## Lanjutkan dari kandidat E2
 
 1. Cocokkan artefak dan checkpoint dengan hasil di repo sebelum mengulang training. Gunakan E2 1280 gambar penuh sebagai kandidat awal.
@@ -37,3 +50,4 @@ Pembagian kerja yang disarankan adalah data dan label, training dan ekspor, eval
 - **17 November 2026 — penutup dokumentasi.** Mencatat migrasi GitHub selesai dan checklist eksperimen; memperjelas clone, direktori kerja, perintah reproduksi, workflow satu tugas, dan ringkasan pemeriksaan E2 di README. Verifikasi: tautan berkas lokal, argumen contoh terhadap parser CLI, angka E2 terhadap CSV, `git diff --check`, dan pemeriksaan isi publik. Tidak menjalankan training, unduhan data, ekspor model, atau evaluasi test. Hash perubahan tersedia di riwayat Git.
 - **17 November 2026 — audit notebook publik.** Memeriksa dua notebook M1, termasuk metadata dan output tersimpan; tidak ditemukan NIM, tautan Drive privat, path profil komputer, atau pola kredensial yang diperiksa. Memperbaiki petunjuk lokal yang masih mengarah ke Kaggle, memperjelas konfigurasi E1 lokal yang sudah terisi, serta menautkan status terkini dan membedakan ekspor pembesaran M1 dari E2 native. Verifikasi: JSON notebook, sintaks seluruh sel kode, tautan lokal, kesamaan sel kode/metadata/output terhadap versi sebelum audit, dan `git diff --check`. Perubahan notebook hanya pada teks Markdown; notebook, training, dan test tidak dijalankan.
 - **17 November 2026 — template pull request.** Menambahkan `.github/pull_request_template.md` berisi tujuan/perubahan, verifikasi aktual, dan checklist pembaruan handoff; menautkannya dari workflow README. Verifikasi: lokasi dan isi template, tautan lokal dokumen, pemeriksaan isi publik, serta `git diff --check`. Tidak menjalankan eksperimen atau mengubah model.
+- **17 November 2026 — pemeriksaan serah terima.** Memeriksa sinkronisasi Git, integritas objek Git, sintaks 10 skrip dan 10 sel kode, dua notebook, 16 tautan lokal, serta pola informasi privat pada berkas teks terlacak. Paket lanjutan lolos CRC; checkpoint E2 dan ground truth di dalamnya cocok dengan berkas lokal. Audit cache native lokal `ready=true` dengan 1.600 pasangan terverifikasi. Menambahkan daftar berkas transfer, keterbatasan isi paket, dan SHA-256 checkpoint. Verifikasi statis dan integritas berkas lolos; eksekusi penuh pada komputer penerima tetap perlu diperiksa. Tidak menjalankan training atau evaluasi test.
