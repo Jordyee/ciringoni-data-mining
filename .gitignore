@@ -1,0 +1,28 @@
+# Local environments and credentials
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.env
+.env.*
+kaggle.json
+
+# Team files and experiment artifacts
+*.docx
+*.zip
+*.pt
+/Data_Mining_Ciringoni_M1/data/
+/Data_Mining_Ciringoni_M1/bukti/
+/Data_Mining_Ciringoni_M1/README.md
+/Data_Mining_Ciringoni_M1/HANDOFF.md
+/Data_Mining_Ciringoni_M1/Rencana_Kerja_Ciringoni.md
+
+# Keep the scripts and aggregate metrics with the notebooks.
+/Data_Mining_Ciringoni_M1/hasil_m1/*
+!/Data_Mining_Ciringoni_M1/hasil_m1/eksperimen.csv
+/Data_Mining_Ciringoni_M1/hasil_m2/*
+!/Data_Mining_Ciringoni_M1/hasil_m2/*.py
+!/Data_Mining_Ciringoni_M1/hasil_m2/evaluasi/
+/Data_Mining_Ciringoni_M1/hasil_m2/evaluasi/*
+!/Data_Mining_Ciringoni_M1/hasil_m2/evaluasi/eksperimen_e2_val.csv
+!/Data_Mining_Ciringoni_M1/hasil_m2/evaluasi/eksperimen_mosaic_val.csv
