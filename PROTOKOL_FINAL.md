@@ -28,6 +28,13 @@ Jalankan dari `Data_Mining_Ciringoni_M1`. Gunakan Python 3.13 dengan PyTorch 2.9
 python hasil_m2/train_e2_native.py <native-train-val> --batch 4 --epochs 30 --output <run-final>
 py -3.11 hasil_m2/pulihkan_sumber_e2.py <zip-uts> <cache-test> --test-only --workers 4 --seconds 650
 py -3.11 hasil_m2/bangun_test_native.py <zip-uts> <cache-test> <native-test>
+python hasil_m2/evaluasi_final.py val <checkpoint-640> <native-train-val> <validasi-640> --size 640
+python hasil_m2/evaluasi_final.py val <checkpoint-1280> <native-train-val> <validasi-1280> --size 1280
+python hasil_m2/ekspor_final.py <checkpoint-terpilih> <native-train-val> <ekspor> --size <640-atau-1280>
+python hasil_m2/evaluasi_final.py lock <folder-model-OpenVINO> <native-test> <lock.json> --size <resolusi> --precision <fp32-atau-int8> --checkpoint <checkpoint-terpilih> --validation-metrics <metrics.json-varian>
+python hasil_m2/evaluasi_final.py test <folder-model-OpenVINO> <native-test> <hasil-test> --size <resolusi> --precision <fp32-atau-int8> --checkpoint <checkpoint-terpilih> --validation-metrics <metrics.json-varian> --lock <lock.json>
 ```
+
+Verifikasi jalur inferensi sebelum run final memakai 12 gambar validation, model 1280 lima epoch, dan kalibrasi smoke INT8 pada 16 gambar train. Kedua IR statis berinput 1 × 3 × 1280 × 1280 dan menjalankan head end-to-end. IR INT8 memuat 125 operasi `FakeQuantize`, sedangkan IR FP32 memuat nol. Kedua backend OpenVINO melaporkan enam thread worker dengan afinitas proses pada empat CPU logis. Smoke memeriksa jalur eksekusi dan bentuk graph.
 
 Artefak tim menyimpan manifest, prediksi per gambar, kurva, log, bobot, paket ekspor, lock lengkap, dan bahan pengumpulan. Repo publik menyimpan protokol, skrip, dan metrik agregat.
