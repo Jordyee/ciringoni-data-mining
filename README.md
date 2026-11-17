@@ -22,7 +22,7 @@ git clone https://github.com/Jordyee/ciringoni-data-mining.git
 cd ciringoni-data-mining
 ```
 
-Baca [HANDOFF.md](HANDOFF.md), lalu jalankan notebook dan perintah Python dari direktori berikut:
+Baca [HANDOFF.md](HANDOFF.md) dan [protokol penutupan](PROTOKOL_FINAL.md), lalu jalankan notebook dan perintah Python dari direktori berikut:
 
 ```powershell
 cd Data_Mining_Ciringoni_M1

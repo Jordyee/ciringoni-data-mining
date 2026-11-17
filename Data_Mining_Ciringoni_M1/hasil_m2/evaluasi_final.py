@@ -90,7 +90,7 @@ def inputs(native, split, size):
     return gt, images, geometry, fingerprints
 
 
-def evaluate(model_path, size, dataset, output):
+def evaluate(model_path, size, dataset, output, expected_runtime=None):
     gt, images, geometry, fingerprints = dataset
     output.mkdir(parents=True, exist_ok=False)
     process = psutil.Process()
@@ -109,6 +109,15 @@ def evaluate(model_path, size, dataset, output):
     warm = predictor.predict(**options)
     list(islice(warm, PROTOCOL["warmup_images"]))
     warm.close()
+    backend = model.predictor.model.backend
+    runtime = {"cpu_affinity": affinity, "end2end": model.predictor.model.end2end}
+    if hasattr(backend, "ov_compiled_model"):
+        runtime["openvino_threads"] = backend.ov_compiled_model.get_property("INFERENCE_NUM_THREADS")
+        runtime["openvino_precision_hint"] = str(backend.ov_compiled_model.get_property("INFERENCE_PRECISION_HINT"))
+    if not runtime["end2end"]:
+        raise ValueError("YOLO26 model did not use the locked end-to-end head")
+    if expected_runtime is not None and runtime != expected_runtime:
+        raise ValueError("Test CPU runtime differs from the validation runtime in the lock")
     lookup = {path: image_id for image_id, path in zip(sorted(gt.imgs), images, strict=True)}
     seen, detections, times = set(), [], []
     for result in predictor.predict(**options):
@@ -126,13 +135,6 @@ def evaluate(model_path, size, dataset, output):
         raise ValueError("Predictions do not cover the audited split")
     metrics = score(gt, detections, sorted(gt.imgs))
     precision, recall = precision_recall_fixed(gt, detections)
-    backend = model.predictor.model.backend
-    runtime = {"cpu_affinity": affinity, "end2end": model.predictor.model.end2end}
-    if hasattr(backend, "ov_compiled_model"):
-        runtime["openvino_threads"] = backend.ov_compiled_model.get_property("INFERENCE_NUM_THREADS")
-        runtime["openvino_precision_hint"] = str(backend.ov_compiled_model.get_property("INFERENCE_PRECISION_HINT"))
-    if not runtime["end2end"]:
-        raise ValueError("YOLO26 exported model did not use the locked end-to-end head")
     row = {
         "size": size, "dataset": fingerprints, "protocol": PROTOCOL, "runtime": runtime,
         "versions": environment(), "model_sha256": model_files(model_path), **metrics,
@@ -158,7 +160,7 @@ def lock_config(model, checkpoint, dataset, validation_path, size, precision):
     return {
         "format": "OpenVINO", "precision": precision, "size": size, "protocol": PROTOCOL,
         "checkpoint_sha256": checkpoint_digest, "model_sha256": files, "test": dataset[-1],
-        "validation_metrics_sha256": sha256(validation_path), "versions": environment(),
+        "validation_metrics_sha256": sha256(validation_path), "versions": environment(), "runtime": val["runtime"],
         "evaluator_files_sha256_normalized_lf": {
             file: hashlib.sha256(Path(__file__).with_name(file).read_text(encoding="utf-8").encode("utf-8")).hexdigest()
             for file in ("evaluasi_final.py", "evaluasi_e2.py", "evaluasi_mosaic.py", "uji_tiling_640.py")
@@ -191,6 +193,7 @@ if __name__ == "__main__":
             stream.write("\n")
         print("Lock SHA-256:", sha256(args.output), flush=True)
     else:
+        expected_runtime = None
         if args.mode == "test":
             if not args.lock:
                 parser.error("test requires the previously created --lock")
@@ -198,5 +201,6 @@ if __name__ == "__main__":
             locked_at = saved.pop("locked_at_wib", None)
             if not locked_at or saved != lock:
                 raise ValueError("Test configuration or file hashes differ from the pre-test lock")
+            expected_runtime = lock["runtime"]
             print(f"Using test lock {sha256(args.lock)} from {locked_at}", flush=True)
-        evaluate(model, args.size, dataset, args.output.resolve())
+        evaluate(model, args.size, dataset, args.output.resolve(), expected_runtime)

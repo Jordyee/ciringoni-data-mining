@@ -8,9 +8,10 @@
 - [x] E3 training ubin pada data olahan 640, E5 head P2, dan E6 tanpa mosaic selesai; tidak mengalahkan kontrol masing-masing pada AP-small. [Metrik eksperimen](Data_Mining_Ciringoni_M1/hasil_m2/evaluasi/eksperimen_mosaic_val.csv)
 - [x] E4 SAHI native selesai: bobot E2 1280 yang sama menurunkan AP-small 0,04265→0,03899, recall tetap naik 0,3628→0,3732, dan median CPU naik 120,0→307,7 ms. Angka E4 memakai protokol evaluasinya sendiri.
 - [x] E7 pilot OpenVINO FP32/INT8 pada kontrol 640 selesai.
+- [x] Audit dan pembangunan test native terpisah selesai. Kedua resolusi memuat 178 gambar dan 1.159 kotak yang cocok dengan split UTS.
 - [ ] Konfirmasi kandidat E2 native 1280 gambar penuh dan anggaran training final pada validation.
 - [ ] Bandingkan ekspor FP32/INT8 kandidat final; pilot E7 kontrol 640 belum mencakup kandidat ini.
-- [ ] Kunci konfigurasi dan siapkan sumber native test secara terpisah; builder E2 saat ini hanya mengolah train+validation. Evaluasi final pada 178 gambar test belum dilakukan.
+- [ ] Kunci konfigurasi dari validation dan jalankan evaluasi akhir pada test.
 
 ## Data dan reproduksi
 
@@ -38,6 +39,8 @@ Skrip ada di [hasil_m2](Data_Mining_Ciringoni_M1/hasil_m2). Lingkungan teruji me
 
 ## Lanjutkan dari kandidat E2
 
+Lihat [protokol penutupan](PROTOKOL_FINAL.md) untuk keputusan 30 epoch, hasil audit data, dan perintah native test serta OpenVINO.
+
 1. Cocokkan artefak dan checkpoint dengan hasil di repo sebelum mengulang training. Gunakan E2 1280 gambar penuh sebagai kandidat awal.
 2. Putuskan anggaran training final dan konfirmasi kandidat pada 356 gambar validation. Bandingkan ekspor FP32 dan INT8 untuk kandidat terpilih.
 3. Kunci hash checkpoint, resolusi, ambang, format ekspor, dan daftar ID. Setelah itu baru evaluasi 178 gambar test.
@@ -46,6 +49,8 @@ Skrip ada di [hasil_m2](Data_Mining_Ciringoni_M1/hasil_m2). Lingkungan teruji me
 Pembagian kerja yang disarankan adalah data dan label, training dan ekspor, evaluasi dan latensi, tiling dan analisis kesalahan, serta koordinasi dan laporan. Dokumen administrasi dan lokasi penyimpanan internal tersedia melalui koordinasi tim.
 
 ## Catatan kemajuan
+
+- **18 November 2026 — persiapan penutupan.** Memverifikasi hash kedua checkpoint E2, ZIP UTS, 1.600 sumber train dan validation, dan geometri label. Menghitung kembali AP-small, COCO mAP50–95, presisi dan recall dari prediksi validation E2 tersimpan. Menjalankan training pasangan 30 epoch pada RTX 4060. Membangun test native terpisah dua kali dan mencocokkan hash audit. Evaluator menolak hash gambar yang diubah pada salinan audit. Jalur OpenVINO FP32/INT8 lolos smoke pada validation dengan kalibrasi smoke dari train. Rincian angka dan konfigurasi ada di [protokol](PROTOKOL_FINAL.md).
 
 - **17 November 2026 — penutup dokumentasi.** Mencatat migrasi GitHub selesai dan checklist eksperimen; memperjelas clone, direktori kerja, perintah reproduksi, workflow satu tugas, dan ringkasan pemeriksaan E2 di README. Verifikasi: tautan berkas lokal, argumen contoh terhadap parser CLI, angka E2 terhadap CSV, `git diff --check`, dan pemeriksaan isi publik. Tidak menjalankan training, unduhan data, ekspor model, atau evaluasi test. Hash perubahan tersedia di riwayat Git.
 - **17 November 2026 — audit notebook publik.** Memeriksa dua notebook M1, termasuk metadata dan output tersimpan; tidak ditemukan NIM, tautan Drive privat, path profil komputer, atau pola kredensial yang diperiksa. Memperbaiki petunjuk lokal yang masih mengarah ke Kaggle, memperjelas konfigurasi E1 lokal yang sudah terisi, serta menautkan status terkini dan membedakan ekspor pembesaran M1 dari E2 native. Verifikasi: JSON notebook, sintaks seluruh sel kode, tautan lokal, kesamaan sel kode/metadata/output terhadap versi sebelum audit, dan `git diff --check`. Perubahan notebook hanya pada teks Markdown; notebook, training, dan test tidak dijalankan.
