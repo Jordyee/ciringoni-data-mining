@@ -44,4 +44,4 @@ git commit -m "Update project documentation and handoff"
 git push -u origin codex/perbarui-dokumentasi
 ```
 
-Verifikasi perubahan sebelum commit, periksa isi staged agar aman untuk publik, lalu buka pull request berisi tujuan dan hasil verifikasi. Untuk tugas lain, pilih hanya berkas yang terkait saat `git add`.
+Verifikasi perubahan sebelum commit, periksa isi staged agar aman untuk publik, lalu buka pull request berisi tujuan dan hasil verifikasi. Gunakan [template pull request](.github/pull_request_template.md) sebagai panduan. Untuk tugas lain, pilih hanya berkas yang terkait saat `git add`.
