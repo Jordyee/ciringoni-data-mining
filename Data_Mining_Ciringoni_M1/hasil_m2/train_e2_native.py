@@ -64,14 +64,19 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Train native-source YOLO26n at 640 and 1280 under matching settings.")
     parser.add_argument("native", type=Path)
     parser.add_argument("--batch", type=int, choices=(2, 4), default=4)
+    parser.add_argument("--epochs", type=int, default=EPOCHS)
+    parser.add_argument("--output", type=Path)
     parser.add_argument("--smoke-only", action="store_true", help="Check 1280 GPU memory with one batch only")
     args = parser.parse_args()
+    if args.epochs < 1:
+        parser.error("--epochs must be positive")
     if not torch.cuda.is_available():
         raise SystemExit("CUDA is required.")
     native = args.native.resolve()
     verify_pair(native)
-    output = Path(__file__).resolve().parent / "eksperimen_e2_native"
-    weights = output.parent.parent / "data/yolo26n.pt"
+    scripts = Path(__file__).resolve().parent
+    output = args.output.resolve() if args.output else scripts / "eksperimen_e2_native"
+    weights = scripts.parent / "data/yolo26n.pt"
     if output.exists() and not args.smoke_only:
         raise FileExistsError(output)
     with TemporaryDirectory(prefix="ciringoni-e2-train-", delete=args.smoke_only) as folder:
@@ -80,7 +85,7 @@ if __name__ == "__main__":
         train(weights, smoke_yaml(native, work, args.batch), work, "E2_smoke_1280", 1280, args.batch, 1, smoke=True)
         if not args.smoke_only:
             runs = work / "runs"
-            train(weights, native / "1280/data.yaml", runs, "E2_native_1280", 1280, args.batch, EPOCHS)
-            train(weights, native / "640/data.yaml", runs, "E2_control_native_640", 640, args.batch, EPOCHS)
+            train(weights, native / "1280/data.yaml", runs, "E2_native_1280", 1280, args.batch, args.epochs)
+            train(weights, native / "640/data.yaml", runs, "E2_control_native_640", 640, args.batch, args.epochs)
             shutil.copytree(runs, output / "runs")
             print(f"{datetime.now(WIB).isoformat(timespec='seconds')} | verified checkpoints published | {output}", flush=True)
