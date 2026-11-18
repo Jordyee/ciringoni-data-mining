@@ -39,3 +39,31 @@ python hasil_m2/evaluasi_final.py test <folder-model-OpenVINO> <native-test> <ha
 Verifikasi jalur inferensi sebelum run final memakai 12 gambar validation, model 1280 lima epoch, dan kalibrasi smoke INT8 pada 16 gambar train. Kedua IR statis berinput 1 × 3 × 1280 × 1280 dan menjalankan head end-to-end. IR INT8 memuat 125 operasi `FakeQuantize`, sedangkan IR FP32 memuat nol. Kedua backend OpenVINO melaporkan enam thread worker dengan afinitas proses pada empat CPU logis. Smoke memeriksa jalur eksekusi dan bentuk graph.
 
 Artefak tim menyimpan manifest, prediksi per gambar, kurva, log, bobot, paket ekspor, lock lengkap, dan bahan pengumpulan. Repo publik menyimpan protokol, skrip, dan metrik agregat.
+
+## Training dan seleksi checkpoint
+
+Kedua run menyelesaikan 30 epoch dengan batch aktual 4. Log mencatat 0,899 jam dan peak reserved VRAM 3.568 MiB untuk 1280, serta 0,555 jam dan 1.052 MiB untuk 640. Siklus penuh berlangsung dari 06.19 hingga 07.47 WIB pada 18 November 2026. SHA-256 `best.pt` 1280 adalah `b8cc53299bf4476bf9492e286fd3c6d8422813b9701b972b641c5e1d124ff51c`. SHA-256 `best.pt` 640 adalah `abf824a20c1bd42b216a09882afe94561d271aec72a404a73a39b21ebd4629ee`. Kedua folder run memuat `args.yaml`, `results.csv` dengan 30 baris, kurva, dan bobot.
+
+| PyTorch pada 356 gambar validation | AP-small | COCO mAP50–95 | Presisi | Recall | CPU median/p95 (ms) |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 640, 5 epoch | 0,01583 | 0,01680 | 0,13533 | 0,12698 | 53,16 / 61,67 |
+| 1280, 5 epoch | 0,03081 | 0,02597 | 0,16022 | 0,20091 | 200,54 / 224,90 |
+| 640, 30 epoch | 0,04441 | 0,03717 | 0,18864 | 0,22902 | 55,63 / 63,58 |
+| 1280, 30 epoch | 0,05913 | 0,05135 | 0,14684 | 0,39909 | 185,78 / 219,64 |
+
+Kandidat 1280 memenuhi ambang untuk ketiga metrik keputusan. Selisih terhadap kontrol 640 pada 30 epoch adalah +0,01472 AP-small, +0,01418 mAP50–95, dan +0,17007 recall. Presisi pada ambang tetap turun 0,04181, dan p95 CPU naik dari 63,58 ke 219,64 ms. Pembandingan empat baris di atas memakai `nms=False` untuk mengunci head end-to-end yang juga digunakan saat ekspor. Hasil E2 historis di awal dokumen memakai pengaturan `nms` bawaan Ultralytics saat inferensi. Angka historis dan hasil inferensi ulang di tabel berasal dari protokol yang berbeda.
+
+Training berjalan di Windows build 26100 dengan driver NVIDIA 560.94 dan Python 3.13.1. Benchmark menggunakan Intel Core i7-13650HX dengan afinitas proses pada empat CPU logis. Pembuatan data memakai Python 3.11.9, Pillow 12.0.0, libjpeg 8.0, dan Windows HEIF Image Extension 1.2.62.0. Clone GitHub bersih pada `ba85421` membangun ulang audit dan ground truth test dengan hash identik dari arsip UTS dan cache sumber yang sama.
+
+## Seleksi format dan penguncian test
+
+E7 memakai `best.pt` native 1280 dari run 30 epoch. Kalibrasi NNCF memproses 320 dari 320 gambar train. SHA-256 daftar stem kalibrasi terurut adalah `9d2719e7864244c8e56fae04f0f88d1bc39e6b2a196bf6f63905d07c851f68ca`. Kedua IR statis berukuran 1 × 3 × 1280 × 1280. Pemeriksaan graph menemukan 0 operasi `FakeQuantize` pada FP32 dan 125 pada INT8. OpenVINO melaporkan enam thread pada kedua varian dengan afinitas proses CPU logis 0–3 dan float32 sebagai precision hint.
+
+| OpenVINO pada 356 gambar validation | AP-small | COCO mAP50–95 | Presisi | Recall | CPU median/p95 (ms) | XML + BIN (MB) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| FP32 | 0,05913 | 0,05135 | 0,14684 | 0,39909 | 162,73 / 174,93 | 10,342 |
+| INT8 | 0,06000 | 0,05153 | 0,13793 | 0,39909 | 83,41 / 91,79 | 3,660 |
+
+INT8 memenuhi batas yang ditetapkan. Selisih terhadap FP32 adalah +0,00087 AP-small, +0,00018 mAP50–95, dan 0 recall. Presisi turun 0,00891 pada ambang tetap. P95 turun 83,14 ms dan jumlah byte XML + BIN turun 64,6%. Selisih skor yang kecil diukur pada satu split dan satu checkpoint. [Konfigurasi dan fingerprint yang dikunci sebelum test](test-lock.json)
+
+Lock dibuat pada 18 November 2026 pukul 08.14 WIB dengan SHA-256 `943b783cd09edf11dcf68120fccf3377f2d330a8c623809816e1f84dfa5d8d32`. Pilihan yang dikunci adalah YOLO26n native 1280 gambar penuh, OpenVINO INT8, batch 1, head end-to-end, confidence AP 0,001, confidence presisi/recall 0,05, IoU pencocokan 0,50, dan maksimal 100 deteksi per gambar.
