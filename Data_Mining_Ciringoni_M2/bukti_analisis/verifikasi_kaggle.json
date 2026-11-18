@@ -1,0 +1,19 @@
+{
+  "url": "https://www.kaggle.com/code/kaawoanprayer/fp-data-mining-ciringoni-m2",
+  "title": "FP Data Mining Ciringoni M2",
+  "source_notebook": "https://www.kaggle.com/code/davejordygerungan/data-mining-mid",
+  "source_attached": true,
+  "imported_notebook": "FP_DM_Ciringoni_Kaggle_M2.ipynb",
+  "version": 1,
+  "version_name": "M2 audit sumber Kaggle dan kode E2 E3 E4",
+  "save_type": "Save & Run All",
+  "status": "Successful",
+  "verified_date": "19 November 2026",
+  "gpu_training": false,
+  "script_version_id": 371146508,
+  "runtime_seconds": 39.1,
+  "output_mb": 3.91,
+  "log_downloaded": true,
+  "cloud_audit_executed": true,
+  "kaggle_execution_verified": true
+}

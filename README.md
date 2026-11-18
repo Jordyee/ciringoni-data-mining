@@ -2,6 +2,18 @@
 
 Final project untuk mendeteksi area kecil kerusakan daun jagung akibat Fall Armyworm (FAW) dengan YOLO26n. Dataset memakai satu kelas anotasi, `infected`.
 
+## Notebook Kaggle dan progres M2
+
+[Notebook Final Project Ciringoni M2](https://www.kaggle.com/code/kaawoanprayer/fp-data-mining-ciringoni-m2) memakai output [notebook Kaggle UTS Data-Mining-MID](https://www.kaggle.com/code/davejordygerungan/data-mining-mid) sebagai **Source Notebook**. Versi 1 disimpan melalui **Save & Run All** dan berhasil dalam **39,1 detik** pada 19 November 2026. Akses Kaggle masih privat pada akun Prayer.
+
+Eksekusi versi ini memeriksa dataset dan menampilkan riwayat eksperimen; training GPU dinonaktifkan. Kode revisi E2 native 1280, E3 tiling, serta E4 SAHI sudah tersedia, sementara eksekusi GPU revisinya menunggu data native dan checkpoint tim. Hasil eksperimen lokal yang sudah selesai tetap mengacu pada tabel di bawah dan `HANDOFF.md`.
+
+- [Panduan dan notebook Kaggle/Colab M2](Data_Mining_Ciringoni_M2/README.md)
+- [Ringkasan progres, bukti, dan pekerjaan berikutnya](Data_Mining_Ciringoni_M2/PROGRESS_M2.md)
+- [Log Save & Run All versi 1](Data_Mining_Ciringoni_M2/bukti_analisis/log_kaggle_v1.txt)
+
+Dokumen Word/PDF beserta foto pertemuan dan lembar kontribusi berada dalam paket internal kelompok, sesuai aturan penyimpanan repo.
+
 ## Ringkasan pemeriksaan 30–60 detik
 
 **Kandidat sementara adalah YOLO26n E2 native 1280 dengan inferensi gambar penuh.** Pasangan 640/1280 memakai 1.600 citra asli train+validation yang dipulihkan melalui MD5 dan audit geometri. Keduanya dilatih lima epoch, batch 4, seed 42, lalu dievaluasi pada 356 gambar validation yang sama.

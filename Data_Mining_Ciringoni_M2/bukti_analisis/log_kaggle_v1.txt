@@ -1,0 +1,89 @@
+9.5s 1 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+9.5s 2 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+9.5s 3 0.00s - to python to disable frozen modules.
+9.5s 4 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+10.3s 5 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+10.3s 6 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+10.3s 7 0.00s - to python to disable frozen modules.
+10.3s 8 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+11.8s 9 Output /kaggle/working/FP_DM_Ciringoni | LATIH {'E0': False, 'E1': False, 'E2_control_native640': False, 'E2': False, 'E3': False, 'E5': False, 'E6': False} | EVALUASI []
+13.2s 10 Fungsi analisis, training, E2, E3, SAHI dan pencatatan siap.
+21.0s 11 {
+21.0s 12 "source_leakage": 0,
+21.0s 13 "summary": [
+21.0s 14 {
+21.0s 15 "split": "train",
+21.0s 16 "gambar": 1244,
+21.0s 17 "kotak": 10540,
+21.0s 18 "sumber": 40,
+21.0s 19 "background": 0
+21.0s 20 },
+21.0s 21 {
+21.0s 22 "split": "val",
+21.0s 23 "gambar": 356,
+21.0s 24 "kotak": 2205,
+21.0s 25 "sumber": 28,
+21.0s 26 "background": 0
+21.0s 27 },
+21.0s 28 {
+21.0s 29 "split": "test",
+21.0s 30 "gambar": 178,
+21.0s 31 "kotak": 1159,
+21.0s 32 "sumber": 24,
+21.0s 33 "background": 0
+21.0s 34 }
+21.0s 35 ],
+21.0s 36 "input": "/kaggle/input/notebooks/davejordygerungan/data-mining-mid/UTS_DM_kelompok_ciringoni_hasil.zip",
+21.0s 37 "near_pairs_cross_split": 0
+21.0s 38 }
+24.8s 39 35.62% kotak memiliki sisi <16 px pada acuan 640. Prioritas E2 dan tiling diuji pada val.
+25.0s 40 GT val 356 gambar 2205 anotasi
+25.2s 41 creating index...
+25.2s 42 index created!
+25.2s 43 Loading and preparing results...
+25.2s 44 DONE (t=0.00s)
+25.2s 45 creating index...
+25.2s 46 index created!
+25.2s 47 Running per image evaluation...
+25.2s 48 Evaluate annotation type *bbox*
+25.8s 49 DONE (t=0.72s).
+25.8s 50 Accumulating evaluation results...
+25.8s 51 DONE (t=0.05s).
+25.8s 52 Prediksi sempurna lulus, AP = 1.0 maxDet konversi = 100
+25.9s 53 Recall per bin dihitung greedy IoU >=0.5. Threshold dipilih dari kurva F1 val dan disimpan per run.
+25.9s 54 Kolom P/R Ultralytics dan P_fixed/R_fixed memiliki threshold evaluasi yang berbeda dan disimpan terpisah.
+25.9s 55 Benchmark baru memakai gambar val pertama yang sama, batch1, CPU4 thread, wall clock sesudah decode, median dan p90.
+25.9s 56 Benchmark historis repo memakai median/p95 lintas356 gambar. Gunakan hanya perbandingan dengan protokol yang sama.
+26.5s 57 E2–E4 menunggu input native1280 serta checkpoint yang sesuai.
+26.8s 58 E3a dievaluasi pada gambar val utuh1280. Untuk E3b pilih SAHI_MODEL="E3", masukkan "E4" dalam EVALUASI.
+28.3s 59 {
+28.3s 60 "scope": "Progress M2",
+28.3s 61 "data_ready": true,
+28.3s 62 "native_ready": false,
+28.3s 63 "runs_dihitung": [],
+28.3s 64 "history_repo_commit": "e376ec2",
+28.3s 65 "test_dijalankan": false,
+28.3s 66 "latih": {
+28.3s 67 "E0": false,
+28.3s 68 "E1": false,
+28.3s 69 "E2_control_native640": false,
+28.3s 70 "E2": false,
+28.3s 71 "E3": false,
+28.3s 72 "E5": false,
+28.3s 73 "E6": false
+28.3s 74 },
+28.3s 75 "publication": "Nomor versi Kaggle dicatat setelah Save & Run All berhasil"
+28.3s 76 }
+28.4s 77 Arsip progres /kaggle/working/FP_DM_Ciringoni_hasil.zip
+32.2s 78 /usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+32.2s 79 cells[i][c] = re.sub('\\\\\|', '|', cell)
+32.4s 80 /usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+32.4s 81 text = re.sub(r'_', '\_', text) # Escape underscores in display text
+33.3s 82 [NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+33.5s 83 [NbConvertApp] Writing 1369617 bytes to __notebook__.ipynb
+36.9s 84 [NbConvertApp] Converting notebook __notebook__.ipynb to html
+38.0s 85 [NbConvertApp] Support files will be in __results___files/
+38.0s 86 [NbConvertApp] Making directory __results___files
+38.0s 87 [NbConvertApp] Making directory __results___files
+38.0s 88 [NbConvertApp] Making directory __results___files
+38.0s 89 [NbConvertApp] Writing 651998 bytes to __results__.html
