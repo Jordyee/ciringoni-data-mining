@@ -48,7 +48,7 @@ Kedua run menyelesaikan 30 epoch dengan batch aktual 4. Log mencatat 0,899 jam d
 | --- | ---: | ---: | ---: | ---: | ---: |
 | 640, 5 epoch | 0,01583 | 0,01680 | 0,13533 | 0,12698 | 53,16 / 61,67 |
 | 1280, 5 epoch | 0,03081 | 0,02597 | 0,16022 | 0,20091 | 200,54 / 224,90 |
-| 640, 30 epoch | 0,04441 | 0,03717 | 0,18864 | 0,22902 | 55,63 / 63,58 |
+| 640, 30 epoch | 0,04441 | 0,03718 | 0,18864 | 0,22902 | 55,63 / 63,58 |
 | 1280, 30 epoch | 0,05913 | 0,05135 | 0,14684 | 0,39909 | 185,78 / 219,64 |
 
 Kandidat 1280 memenuhi ambang untuk ketiga metrik keputusan. Selisih terhadap kontrol 640 pada 30 epoch adalah +0,01472 AP-small, +0,01418 mAP50–95, dan +0,17007 recall. Presisi pada ambang tetap turun 0,04181, dan p95 CPU naik dari 63,58 ke 219,64 ms. Pembandingan empat baris di atas memakai `nms=False` untuk mengunci head end-to-end yang juga digunakan saat ekspor. Hasil E2 historis di awal dokumen memakai pengaturan `nms` bawaan Ultralytics saat inferensi. Angka historis dan hasil inferensi ulang di tabel berasal dari protokol yang berbeda.
@@ -67,3 +67,17 @@ E7 memakai `best.pt` native 1280 dari run 30 epoch. Kalibrasi NNCF memproses 320
 INT8 memenuhi batas yang ditetapkan. Selisih terhadap FP32 adalah +0,00087 AP-small, +0,00018 mAP50–95, dan 0 recall. Presisi turun 0,00891 pada ambang tetap. P95 turun 83,14 ms dan jumlah byte XML + BIN turun 64,6%. Selisih skor yang kecil diukur pada satu split dan satu checkpoint. [Konfigurasi dan fingerprint yang dikunci sebelum test](test-lock.json)
 
 Lock dibuat pada 18 November 2026 pukul 08.14 WIB dengan SHA-256 `943b783cd09edf11dcf68120fccf3377f2d330a8c623809816e1f84dfa5d8d32`. Pilihan yang dikunci adalah YOLO26n native 1280 gambar penuh, OpenVINO INT8, batch 1, head end-to-end, confidence AP 0,001, confidence presisi/recall 0,05, IoU pencocokan 0,50, dan maksimal 100 deteksi per gambar.
+
+## Hasil test final
+
+Konfigurasi dikunci dan commit [d074945](https://github.com/Jordyee/ciringoni-data-mining/commit/d074945125180013d48bc6e2146aa4d662471698) terverifikasi di branch GitHub sebelum inferensi test. Evaluator mencocokkan hash checkpoint, tiga berkas OpenVINO, daftar ID, ground truth, audit dan versi kode, lalu memproses 178 gambar dan mencatat 178 latensi. [CSV final dan angka presisi penuh](Data_Mining_Ciringoni_M1/hasil_m2/evaluasi/eksperimen_final.csv)
+
+| Split test | AP-small | COCO mAP50–95 | AP50 | Presisi | Recall | CPU median/p95 (ms) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 178 gambar, 1.159 kotak | 0,03019 | 0,03606 | 0,10732 | 0,10829 | 0,37964 | 104,21 / 119,41 |
+
+Pada confidence 0,05 dan IoU 0,50, 440 prediksi cocok dengan anotasi, 3.623 prediksi tidak memiliki pasangan, dan 719 kotak terlewat. Model menemukan 16 dari 69 kotak dengan sisi terpendek <8 px dan 424 dari 1.090 kotak lainnya. Batas sisi 8 px merupakan profil kesalahan tambahan. AP-small tetap mengikuti luas kotak COCO. Contoh visual dari prediksi tersimpan menunjukkan satu deteksi cocok, satu kotak kecil terlewat, dan satu prediksi tanpa pasangan.
+
+AP-small test lebih rendah daripada AP-small INT8 pada validation, 0,03019 dibanding 0,06000. Satu seed, satu koleksi citra, potensi variasi anotasi, dan keterbatasan metadata sesi membatasi generalisasi. Banyaknya kotak terlewat dan prediksi tanpa pasangan membatasi penggunaan model untuk keputusan lapangan.
+
+Verifikasi ulang menghitung COCO AP, presisi, dan recall dari prediksi tersimpan untuk tujuh baris CSV. Nilainya identik hingga toleransi absolut `1e-12`. Verifikasi ini memakai hasil inferensi test yang sudah tersimpan. Demo terpisah berhasil memuat OpenVINO INT8 dan menyimpan prediksi pada satu gambar validation. Replikasi training penuh pada komputer lain dan pada seed tambahan belum diukur.

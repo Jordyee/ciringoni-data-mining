@@ -26,3 +26,4 @@ kaggle.json
 /Data_Mining_Ciringoni_M1/hasil_m2/evaluasi/*
 !/Data_Mining_Ciringoni_M1/hasil_m2/evaluasi/eksperimen_e2_val.csv
 !/Data_Mining_Ciringoni_M1/hasil_m2/evaluasi/eksperimen_mosaic_val.csv
+!/Data_Mining_Ciringoni_M1/hasil_m2/evaluasi/eksperimen_final.csv
