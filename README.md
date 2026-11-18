@@ -1,5 +1,7 @@
 # Ciringoni Data Mining
 
+**Mulai M2 di sini.** [Handoff program, notebook Kaggle, dan prompt untuk Codex penerus](HANDOFF_M2.md).
+
 Final project untuk mendeteksi area kecil kerusakan daun jagung akibat Fall Armyworm (FAW) dengan YOLO26n. Dataset memakai satu kelas anotasi, `infected`.
 
 ## Ringkasan pemeriksaan 30–60 detik

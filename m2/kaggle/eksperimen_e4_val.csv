@@ -1,0 +1,3 @@
+id,split,gambar,AP-small,recall_conf_0.05_iou_0.5,cpu_median_ms,cpu_p95_ms
+E4_full,val,356,0.04265,0.3628,120.0,145.6
+E4_sahi,val,356,0.03899,0.3732,307.7,379.9
