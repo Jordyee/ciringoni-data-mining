@@ -18,28 +18,31 @@ from urllib.request import Request, urlopen
 from zipfile import ZipFile
 
 
+SPLIT_COUNTS = {"train": 1244, "val": 356, "test": 178}
+
+
 def table(archive, name):
     with TextIOWrapper(archive.open(name), encoding="utf-8-sig") as stream:
         return list(csv.DictReader(stream))
 
 
-def source_rows(archive):
+def source_rows(archive, splits=("train", "val")):
     inventory = defaultdict(list)
     for row in table(archive, "inventaris.csv"):
         if row["punya_gambar"] == "True":
             inventory[(row["stem"], row["source_id"])].append(row)
     sources = []
     for entry in table(archive, "pembagian_split.csv"):
-        if entry["split"] not in {"train", "val"}:
+        if entry["split"] not in splits:
             continue
         stem = Path(entry["file"]).stem
         (original,) = inventory[(stem, entry["source_id"])]
         digest = original["md5"]
         if len(digest) != 32 or any(character not in "0123456789abcdef" for character in digest):
             raise ValueError(f"Invalid inventory MD5 for {stem}")
-        sources.append(dict(original, stem=stem, split=entry["split"]))
-    if Counter(row["split"] for row in sources) != {"train": 1244, "val": 356}:
-        raise ValueError("Unexpected UTS train / validation population")
+        sources.append(dict(original, stem=stem, split=entry["split"], grup=entry["grup"]))
+    if Counter(row["split"] for row in sources) != {split: SPLIT_COUNTS[split] for split in splits}:
+        raise ValueError("Unexpected UTS split population")
     return sources
 
 
@@ -53,11 +56,12 @@ def main():
     parser.add_argument("archive", type=Path)
     parser.add_argument("cache", type=Path)
     parser.add_argument("--seed-cache", type=Path)
+    parser.add_argument("--test-only", action="store_true", help="Use a separate cache for held-out sources")
     parser.add_argument("--seconds", type=int, default=900)
     parser.add_argument("--workers", type=int, choices=range(1, 9), default=8)
     args = parser.parse_args()
     with ZipFile(args.archive) as archive:
-        sources = source_rows(archive)
+        sources = source_rows(archive, ("test",)) if args.test_only else source_rows(archive)
     random.Random(42).shuffle(sources)
     args.cache.mkdir(parents=True, exist_ok=True)
     start = time.monotonic()
@@ -115,7 +119,7 @@ def main():
                 return row, "downloaded", len(raw)
         return row, last_error, 0
 
-    progress = args.cache / "progres_unduh_e2.json"
+    progress = args.cache / ("progres_unduh_test.json" if args.test_only else "progres_unduh_e2.json")
     outcomes = []
     elapsed = 0
 

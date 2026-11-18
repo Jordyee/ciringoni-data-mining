@@ -3,6 +3,7 @@
 import argparse
 import json
 from pathlib import Path
+from time import perf_counter
 
 from pycocotools.coco import COCO
 import torch
@@ -28,12 +29,14 @@ class M1CoordinatePredictor:
 
     def predict(self, **options):
         for result in self.model.predict(**options):
+            start = perf_counter()
             row = self.geometry[Path(result.path).stem]
             with torch.inference_mode():
                 boxes = to_m1_coordinates(result.boxes.xyxy, row[self.native_key], row["content_at_640"])
                 keep = (boxes[:, 2] > boxes[:, 0]) & (boxes[:, 3] > boxes[:, 1])
                 result.boxes.data[:, :4] = boxes
                 result.boxes = result.boxes[keep]
+            result.speed["projection"] = (perf_counter() - start) * 1000
             yield result
 
 

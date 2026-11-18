@@ -1,0 +1,61 @@
+{
+  "format": "OpenVINO",
+  "precision": "int8",
+  "size": 1280,
+  "protocol": {
+    "batch": 1,
+    "conf_ap": 0.001,
+    "conf_precision_recall": 0.05,
+    "iou_match": 0.5,
+    "iou_nms_if_used": 0.7,
+    "max_det": 100,
+    "torch_threads": 4,
+    "warmup_images": 10,
+    "inference": "one full square image, YOLO26 end-to-end, native-to-M1 projection",
+    "latency": "CPU preprocessing, inference, postprocessing and coordinate projection, excluding JPEG read"
+  },
+  "checkpoint_sha256": "b8cc53299bf4476bf9492e286fd3c6d8422813b9701b972b641c5e1d124ff51c",
+  "model_sha256": {
+    "candidate.bin": "476a1b5360968f2547d055d7026ad45ebc33e3a9947d7b5bfb27226d71242108",
+    "candidate.xml": "c1cb40126a5919540229a203bd5c31d7d01cbce2985c619789e9615a73fd33c8",
+    "metadata.yaml": "63a26a759773bfa38e80c48f0fc9e3b0672dbc3947f95c82f872487c930cc979"
+  },
+  "test": {
+    "ids_sha256": "a6d43d6c77913ba3d763d7bb41e1e666e1de5fdfc10803b1a63e93846f5bd7ce",
+    "ground_truth_sha256": "3ddd5121eaf64f66ee4eae6e61e7d80cc23ee4723fcce4c1cbe143a0ff0fb564",
+    "audit_sha256": "25fccb5002d7484559ee229930984e53c7bf005bcd0d75666a5ebf88d1d37572",
+    "images": 178,
+    "boxes": 1159,
+    "archive_sha256": "2a354489909a59f67dfb2f09bd45f72ebf333c740b5715cab0cdd5c6549dbfa0"
+  },
+  "validation_metrics_sha256": "3ef9a13f503d4ee310178392c15b0b485da06114013f8c1226950c231fcdf7ad",
+  "versions": {
+    "torch": "2.9.1+cpu",
+    "torchvision": "0.24.1",
+    "ultralytics": "8.4.210",
+    "openvino": "2026.4.1",
+    "nncf": "3.4.0",
+    "pycocotools": "2.0.11",
+    "numpy": "2.4.6",
+    "opencv-python": "5.0.0.93",
+    "psutil": "7.2.2"
+  },
+  "runtime": {
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "end2end": true,
+    "openvino_threads": 6,
+    "openvino_precision_hint": "<Type: 'float32'>"
+  },
+  "evaluator_files_sha256_normalized_lf": {
+    "evaluasi_final.py": "a1016a1552c732e26fc6f114957e8b7adf93b22a5932946688ede421f7923ab7",
+    "evaluasi_e2.py": "b1624dfdf7634d777e8f3dd77855e133cb8430681e8c72b92889010c7cf43bb0",
+    "evaluasi_mosaic.py": "6968d591f7262d6d8d7842a0a3d2dd504549b973f3893c1ea11465c1c2e1d755",
+    "uji_tiling_640.py": "d6653ffca62a1df89b5b89433e0b6becebfeabe0b3f08566778ad93b7a989849"
+  },
+  "locked_at_wib": "2026-11-18T08:14:05+07:00"
+}
