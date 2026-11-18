@@ -1,5 +1,7 @@
 # Handoff Ciringoni
 
+Untuk pekerjaan M2 pada branch ini, gunakan [handoff Kaggle M2](HANDOFF_M2.md) yang mencatat hasil E2 Versi 4 serta pekerjaan E3 dan E4 berikutnya.
+
 ## Status
 
 - [x] **Migrasi GitHub SELESAI.** [Repo publik Ciringoni](https://github.com/Jordyee/ciringoni-data-mining), branch `main`, initial commit [714b642](https://github.com/Jordyee/ciringoni-data-mining/commit/714b6420396abe3a596534b5829f40beddbd6207). Dataset, bobot, dokumen Word, bukti internal, dan handoff internal tetap di luar Git sesuai `.gitignore`.

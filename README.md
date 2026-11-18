@@ -1,6 +1,6 @@
 # Ciringoni Data Mining
 
-**Mulai M2 di sini.** [Handoff program, notebook Kaggle, dan prompt untuk Codex penerus](HANDOFF_M2.md).
+**Mulai M2 di sini.** [Handoff program, notebook Kaggle, dan prompt untuk Codex penerus](HANDOFF_M2.md). E2 sudah dievaluasi di Kaggle Versi 4 pada 356 gambar. E3 dan E4 menjadi pekerjaan berikutnya.
 
 Final project untuk mendeteksi area kecil kerusakan daun jagung akibat Fall Armyworm (FAW) dengan YOLO26n. Dataset memakai satu kelas anotasi, `infected`.
 

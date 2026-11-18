@@ -1,43 +1,65 @@
-# Serah terima M2 Ciringoni
+# Handoff M2 Ciringoni
 
-**Pertanyaan eksperimen.** Pada 356 gambar validasi yang sama, apakah resolusi native lebih tinggi atau penggunaan ubin memperbaiki deteksi area kecil kerusakan jagung berlabel `infected`? Ukur AP-small, recall pada confidence 0,05 dan IoU 0,50, serta median dan p95 CPU per gambar. Bandingkan perlakuan dengan kontrolnya dalam tiap eksperimen. E2 native 1280 gambar penuh adalah kandidat sementara dari pengujian lokal.
+## Mulai di sini
 
-**Revisi dari pemeriksaan dosen.** Tujuan dan urutan kerja belum cukup jelas, bukti eksperimen perlu diperkuat, dan notebook Kaggle yang diperlihatkan belum menjalankan program eksperimennya. Prioritas penerus adalah program yang dapat dijalankan, input dan output yang dapat diperiksa, lalu pembaruan laporan setelah hasil terverifikasi.
-
-## Buka dari komputer teman
+**E2 telah berhasil dievaluasi dari gambar dan checkpoint di Kaggle Versi 4.** Fokus lanjutan adalah membuat alur E3 dan E4 sama jelas dan dapat diulang, lalu menjelaskan tujuan serta hasil tiap eksperimen kepada dosen. Prioritas program dan Kaggle mendahului pembaruan laporan.
 
 ```sh
 git clone --branch codex/handoff-m2-kaggle-program --single-branch https://github.com/Jordyee/ciringoni-data-mining.git
 cd ciringoni-data-mining
 ```
 
-1. Baca [ringkasan hasil lokal](RINGKASAN_M2.md). Untuk mengulang rekap di komputer baru, buka [notebook rekap](m2/kaggle/rekap_m2.ipynb) dengan direktori kerja root repo, atau arahkan variabel lingkungan `M2_INPUT` ke root clone. Jalankan semua sel. Hasil lokal berada di `output_m2/hasil_validasi_m2.csv`. Direktori keluaran dapat diatur dengan `M2_OUTPUT`.
-2. Untuk uji awal Kaggle, pemilik akun perlu memberi akses ke notebook privat atau teman dapat mengimpor notebook rekap ke akun sendiri. Pasang tiga CSV berikut sebagai satu Input: [E2](Data_Mining_Ciringoni_M1/hasil_m2/evaluasi/eksperimen_e2_val.csv), [E3](Data_Mining_Ciringoni_M1/hasil_m2/evaluasi/eksperimen_mosaic_val.csv), dan [E4](m2/kaggle/eksperimen_e4_val.csv). CSV E3 juga memuat eksperimen lain sehingga kode memilih dua ID E3. CSV E4 menyalin dua baris agregat yang sudah dibulatkan dalam ringkasan publik.
-3. Jalankan **Save Version → Save & Run All**. Periksa status selesai serta unduh `/kaggle/working/hasil_validasi_m2.csv` dari Output. Harus ada enam baris dengan masing-masing 356 gambar. AP-small naik pada E2, turun pada E3 dan E4. Latensi E3 memang kosong pada sumber. Catat versi Kaggle aktual dan commit input.
-4. Setelah alur CSV berjalan, lanjutkan ke program model di bawah. Bukti rekap CSV hanya membuktikan pembacaan dan perbandingan hasil tersimpan. Bukti inferensi membutuhkan checkpoint, gambar, keluaran prediksi baru dan evaluasi terhadap anotasi.
+Buka [notebook E2](m2/kaggle/e2_validasi_kaggle.ipynb), [CSV Kaggle V4](m2/hasil/e2_kaggle_v4.csv), dan [catatan run](m2/hasil/run_e2_v4.json). Snapshot kode berasal dari notebook Kaggle V4 yang sudah selesai. Output sel dikosongkan pada salinan GitHub agar pembaca menjalankan input yang terpasang sendiri.
 
-## Apa yang sudah berjalan
+## Tujuan dan hasil yang sudah dapat diperiksa
 
-| Eksperimen | Bukti lokal dan program | Pekerjaan berikutnya di Kaggle |
+Pada 356 gambar validasi dan 2.205 kotak acuan, uji apakah resolusi native 1280 meningkatkan deteksi area kecil kerusakan jagung berlabel `infected` dibandingkan native 640. Kedua checkpoint berasal dari pelatihan lima epoch, batch 4 dan seed 42 pada pasangan sumber yang sama. Run Kaggle menjalankan inferensi dan evaluasi ulang checkpoint tersebut.
+
+| Hasil V4 CPU Kaggle | Native 640 | Native 1280 |
+| --- | ---: | ---: |
+| AP-small COCO | 0,0218720143 | 0,0426235588 |
+| Recall confidence 0,05 dan IoU 0,50 | 0,2793650794 | 0,3628117914 |
+| mAP50–95 Ultralytics | 0,0198789750 | 0,0326302065 |
+
+AP-small naik 0,0207515444. Kandidat sementara M2 adalah native 1280 gambar penuh. Angka ini berbeda sedikit dari hasil lokal yang tersimpan. V4 memakai CPU Kaggle, Python 3.13.18 dan PyTorch 2.11.0+cpu, sedangkan lingkungan lokal acuan memakai PyTorch 2.9.1 dan skor GPU. Penyebab numerik perbedaan masih perlu diperiksa sebelum mengklaim kesamaan sempurna.
+
+Latensi lokal dalam ringkasan historis berasal dari perangkat dan prosedur tersendiri. Run V4 belum mengukur benchmark latensi CPU Kaggle.
+
+## Akses dan alur Kaggle
+
+[Notebook privat M2](https://www.kaggle.com/code/davejordygerungan/fp-data-mining-m2-ciringoni) · [Dataset privat validasi E2](https://www.kaggle.com/datasets/davejordygerungan/ciringoni-m2-validasi-e2) · [Output notebook](https://www.kaggle.com/code/davejordygerungan/fp-data-mining-m2-ciringoni/output)
+
+Pilih **Version 4** pada riwayat notebook untuk mencocokkan hasil di branch ini. Status V4 COMPLETE diperiksa pada 18 November 2026. V1 berisi rekap angka dalam kode. V2 sempat tersimpan sebelum input siap. V3 memakai GPU dan saat pemeriksaan handoff juga berstatus COMPLETE, tetapi angka V3 belum diaudit dalam pembaruan ini. Gunakan V4 untuk hasil yang didokumentasikan.
+
+Pemilik akun memberi akses notebook dan dataset kepada akun Kaggle teman lewat pengaturan berbagi privat. Alternatifnya gunakan sesi akun pemilik dengan otorisasi pemilik. Clone GitHub memberikan kode dan metrik agregat. Dataset privat menyediakan gambar, label, dua bobot E2, geometri, GT serta skrip evaluator yang diperlukan notebook.
+
+Alur V4 berjalan sebagai berikut.
+
+1. Kaggle memasang Ultralytics 8.4.210 dan pycocotools.
+2. Notebook membaca input privat, menyiapkan direktori kerja Kaggle, dan memeriksa 356 gambar serta 2.205 anotasi.
+3. Kedua checkpoint memprediksi gambar validasi. Evaluator menyelaraskan kotak native ke koordinat acuan 640.
+4. COCOeval menghitung AP-small. Presisi dan recall ambang tetap dihitung pada confidence 0,05 dan IoU 0,50. mAP50–95 memakai validator Ultralytics.
+5. Kaggle menyimpan `E2_control_native_640/coco_val_predictions.json`, `E2_native_1280/coco_val_predictions.json`, JSON metrik masing-masing, dan `hasil_e2_kaggle.csv` di Output.
+
+Untuk mengulang, gunakan kode notebook dan metadata dalam `m2/kaggle`, pasang input privat yang tercantum, lalu Save & Run All. Catat versi baru dan pastikan seluruh sel selesai. Instalasi library besar dan eksekusi utama dikerjakan di Kaggle. Pengguna mengizinkan lokal untuk persiapan berkas, kendali Kaggle, verifikasi hasil, dan GPU lokal bila diperlukan.
+
+## Pekerjaan berikutnya per eksperimen
+
+| Eksperimen | Status | Langkah berikut dan bukti selesai |
 | --- | --- | --- |
-| E2 · resolusi | 1.244 train dan 356 validasi, ID dan label berpasangan. Lima epoch, batch 4, seed 42. AP-small 0,02189 → 0,04269. Alur: `bangun_pasangan_e2.py` → `train_e2_native.py` → `evaluasi_e2.py`. | Pasang dua ekspor native, audit geometri, GT dan kedua best.pt. Cek ID, jalankan inferensi dan proyeksi ke koordinat 640, ekspor prediksi lalu hitung metrik pada 356 gambar. |
-| E3 · pelatihan ubin | Data olahan 640. 1.240 ID train yang sama, 620 langkah optimizer per model, kontrol utuh vs ubin 384. Validasi gambar utuh. AP-small 0,01429 → 0,00339. Alur: `uji_tiling_640.py` → `train_e3_640.py` → `evaluasi_mosaic.py`. | Pasang kedua last.pt dari run terverifikasi serta data olahan. Pilih dua ID E3 secara eksplisit saat evaluasi. Konfirmasi anggaran dari log. Latensi CPU E3 masih perlu diukur pada prosedur yang dicatat. |
-| E4 · inferensi SAHI | Checkpoint E2 1280 yang sama, penuh vs sembilan ubin 640. AP-small 0,04265 → 0,03899, recall 0,3628 → 0,3732. Median CPU 120,0 → 307,7 ms. Program `evaluasi_e4_sahi.py`. | Jalankan smoke pada dua gambar, lalu kedua mode pada 356 gambar. Simpan prediksi, contoh kegagalan, skor GPU serta benchmark CPU terpisah. Catat perangkat sebelum membandingkan latensi. |
+| E2 resolusi | Inferensi dan evaluasi ulang lengkap di V4. | Tampilkan contoh gambar dengan kotak acuan dan prediksi dua resolusi. Periksa selisih terhadap acuan. Simpan versi dependensi dan hash checkpoint. |
+| E3 pelatihan ubin | Hasil lokal tersedia, AP-small kontrol 0,01429 vs ubin 0,00339. | Tambahkan data olahan validation 640 dan dua last.pt E3 terverifikasi ke input privat. Jalankan evaluasi kedua model pada 356 gambar utuh di Kaggle. Periksa 1.240 ID latih dan 620 langkah optimizer dari log sebelum menjelaskan kontrol eksperimen. |
+| E4 inferensi SAHI | Hasil lokal tersedia, AP-small penuh 0,04265 vs SAHI 0,03899. | Gunakan checkpoint E2 native 1280 yang sama pada input privat. Tambahkan evaluasi_e4_sahi.py dan SAHI 0.14.0. Smoke dua gambar, kemudian 356 gambar. Simpan prediksi, metrik dan contoh salah deteksi. |
+| Latensi validasi | Acuan lokal E2/E4 tersedia. | Benchmark pasangan pada CPU dan jumlah thread yang sama setelah pemanasan. Catat batas waktu yang diukur, median dan p95. E3 masih memerlukan pengukuran. |
 
-[Folder program eksperimen](Data_Mining_Ciringoni_M1/hasil_m2) · [Perintah dan hash checkpoint E2](HANDOFF.md). AP-small memakai COCOeval pada acuan 640. mAP E2/E3 dari Ultralytics dan mAP E4 dari COCOeval menggunakan prosedur berbeda. Pemilihan kandidat M2 memakai split validasi. Split test disimpan untuk tahap selanjutnya.
+Skrip acuan ada di [hasil_m2](Data_Mining_Ciringoni_M1/hasil_m2). Evaluator bergantung pada fungsi AP-small dalam sel `m1-11` dari notebook M1. Dataset privat E2 membawa snapshot skrip yang dipakai run V4. Periksa perbedaan sebelum mengganti snapshot dengan kode repo. Untuk E3, minta dua checkpoint beserta log terverifikasi dari pemilik komputer asal. Input E2 saat ini hanya membawa validation, sehingga training baru memerlukan tambahan input train.
 
-## Status Kaggle dan kebutuhan transfer
+## Pemeriksaan dosen dan langkah setelahnya
 
-**Versi 1 privat**, berjudul *FP Data Mining M2 Ciringoni*, selesai dijalankan. [Salinan kode V1](m2/kaggle/arsip_v1.ipynb) memuat enam angka agregat sebagai input di dalam kode dan mencetak hasil ke log. Tidak ada dataset terpasang atau CSV keluaran di V1. Notebook rekap di branch ini merupakan persiapan versi berikutnya dan telah diuji lokal. Nomor versi berikutnya baru dicatat setelah eksekusi Kaggle selesai.
+Tunjukkan pertanyaan eksperimen, gambar input dan label, identitas checkpoint, prediksi pada gambar itu, kemudian skor dari 356 gambar. Buka tab Input dan Output Kaggle untuk menelusuri berkas. Jelaskan kontrol tiap perlakuan dan alasan kandidat dipilih.
 
-Untuk menjalankan model, minta pemilik proyek memberikan akses privat ke data olahan 640, ekspor native 640/1280 train dan val, audit pasangan yang berisi geometri per gambar, `hasil_m1/coco_val_gt.json`, dua best.pt E2 dan dua last.pt E3 beserta argumen dan log. Verifikasi ID, 2.205 kotak validasi dan hash checkpoint sebelum evaluasi. Dari komputer asal, cek isi `Ciringoni_Paket_Lanjutan.zip` terhadap daftar ini. Cache native dan audit geometri lengkap perlu dipindahkan terpisah atau dibangun ulang. Untuk training baru, diperlukan bobot awal YOLO26n.
+Lengkapi E3 dan E4 sebelum menyatakan M2 sudah berjalan penuh di Kaggle. Jika perlu eksperimen tambahan, nyatakan hipotesis dan pembandingnya, misalnya seed tambahan E2 pada anggaran sama untuk memeriksa kestabilan. Pemilihan model memakai validation. Setelah hasil diverifikasi, perbarui laporan, nomor versi Kaggle dan bukti administrasi aktual. [Ringkasan lokal historis](RINGKASAN_M2.md)
 
-Di Kaggle, gunakan input privat berizin di `/kaggle/input`, dan salinan kerja skrip serta keluaran di `/kaggle/working`. Sesuaikan path absolut Windows di YAML/manifest. Evaluator mengambil fungsi AP-small dari sel `m1-11` di notebook M1 lokal, jadi pertahankan struktur folder repo. Periksa dependensi serta penanganan HEIC jika membangun ulang citra native. Angka waktu CPU dapat berbeda antarperangkat.
+## Prompt siap salin untuk Codex teman
 
-## Urutan pemeriksaan dengan dosen
-
-Tunjukkan pertanyaan E2, satu ID gambar dan label, checkpoint yang digunakan, prediksi yang dipetakan ke koordinat acuan, lalu satu baris hasil yang dihitung dari prediksi. Setelah jalur E2 terbukti pada 356 gambar, ulangi dengan kontrol E3 dan E4. Bilamana perlu eksperimen tambahan, sepakati hipotesis dan pembanding terlebih dahulu, misalnya menguji kestabilan E2 dengan seed tambahan pada anggaran yang sama. Simpan hasil baru terpisah dari acuan.
-
-## Prompt untuk Codex teman
-
-> Kerjakan M2 Ciringoni dari branch ini. Baca HANDOFF_M2.md dan RINGKASAN_M2.md. Mulai dengan menjalankan notebook rekap dari tiga CSV dan verifikasi enam baris keluarannya. Tunjukkan input, transformasi, output dan status eksekusi yang sebenarnya. Inventarisasi akses data dan checkpoint privat sebelum memakai GPU. Lalu buat satu jalur E2 dari gambar dan checkpoint sampai prediksi dan evaluasi pada 356 gambar validasi. Cocokkan hasil dengan acuan, jelaskan selisih, dan simpan versi Kaggle yang benar-benar berjalan. Lanjutkan ke E3 dengan kontrol langkah yang sama dan E4 dengan checkpoint yang sama. Usulkan eksperimen tambahan berdasarkan kekurangan yang masih terlihat. Catat per eksperimen perintah, split, versi data, hash checkpoint, versi lingkungan, waktu, output dan batasan. Jika artefak belum tersedia, sebutkan berkas spesifik yang perlu diminta. Utamakan program dan Kaggle. Perbarui laporan hanya setelah hasil diverifikasi. Jaga data, bukti, identitas dan bobot tetap privat.
+> Lanjutkan M2 Ciringoni dari branch codex/handoff-m2-kaggle-program. Baca HANDOFF_M2.md dan hasil E2 Kaggle V4. Prioritaskan program serta alur input → prediksi → evaluasi → output di notebook privat Kaggle M2. E2 V4 sudah COMPLETE dengan 356 gambar dan 2.205 anotasi. Jangan menganggap perlu training ulang untuk mengevaluasi checkpoint yang tersedia. Periksa akses input privat, hash checkpoint dan environment. Audit contoh visual serta selisih hasil E2 terhadap acuan. Lanjutkan E3 dengan dua checkpoint last.pt terverifikasi dan validasi gambar utuh yang sama. Lanjutkan E4 penuh vs SAHI dengan best.pt E2 1280 yang sama. Jalankan instalasi library besar di Kaggle. Siapkan dataset privat tambahan bila E3 memerlukannya, dengan akses pemilik. Pantau Save & Run All sampai selesai, periksa JSON prediksi dan CSV hasil. Dokumentasikan apa yang benar-benar dieksekusi, versi, batasan dan tugas yang tersisa. Bantu saya memahami tujuan, kontrol dan hasil tiap eksperimen sebelum memperbarui laporan. Gunakan validation untuk perbandingan M2 dan pertahankan berkas privat sesuai izin pemilik.

@@ -1,0 +1,23 @@
+{
+  "notebook": "davejordygerungan/fp-data-mining-m2-ciringoni",
+  "version": 4,
+  "status": "COMPLETE",
+  "verified_on": "2026-11-18",
+  "dataset": "davejordygerungan/ciringoni-m2-validasi-e2",
+  "private": true,
+  "device": "CPU",
+  "images": 356,
+  "gt_boxes": 2205,
+  "ultralytics": "8.4.210",
+  "torch": "2.11.0+cpu",
+  "python": "3.13.18",
+  "cpu": "Intel Xeon CPU @ 2.20GHz",
+  "activity": "Inference and validation of existing five-epoch checkpoints",
+  "training_performed": false,
+  "latency_benchmark_performed": false,
+  "code_sha256": "4bc252bc8b6de9a8ae66f4120b4470632aa1447c0424a2f1debed8d6af55276e",
+  "checkpoint_sha256": {
+    "640": "56568daf2c930033058a3b0468f1357069b1110ce2a1e07e705405547f46d34f",
+    "1280": "0bd467aef478ebd26555074030ff653c52cf05ad5380fcbe66057b3c995f264e"
+  }
+}
