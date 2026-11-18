@@ -1,0 +1,4 @@
+split,gambar,kotak,sumber,background
+train,1244,10540,40,0
+val,356,2205,28,0
+test,178,1159,24,0

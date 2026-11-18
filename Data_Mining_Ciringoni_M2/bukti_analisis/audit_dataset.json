@@ -1,0 +1,30 @@
+{
+  "source_leakage": 0,
+  "summary": [
+    {
+      "split": "train",
+      "gambar": 1244,
+      "kotak": 10540,
+      "sumber": 40,
+      "background": 0
+    },
+    {
+      "split": "val",
+      "gambar": 356,
+      "kotak": 2205,
+      "sumber": 28,
+      "background": 0
+    },
+    {
+      "split": "test",
+      "gambar": 178,
+      "kotak": 1159,
+      "sumber": 24,
+      "background": 0
+    }
+  ],
+  "input": "Arsip UTS final kelompok yang telah diaudit",
+  "near_pairs_cross_split": 0,
+  "notebook_sumber_kaggle": "https://www.kaggle.com/code/davejordygerungan/data-mining-mid",
+  "sha256_arsip_input": "2a354489909a59f67dfb2f09bd45f72ebf333c740b5715cab0cdd5c6549dbfa0"
+}
