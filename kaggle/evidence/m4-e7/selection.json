@@ -1,0 +1,17 @@
+{
+  "training_performed_on_kaggle": false,
+  "checkpoint_origin": "Historical 2026-11-18 local training",
+  "size": 1280,
+  "precision": "int8",
+  "resolution_deltas_1280_minus_640": {
+    "ap_small": 0.014719325186684104,
+    "ap_50_95": 0.014178442489294549,
+    "recall": 0.17006802721088438
+  },
+  "export_deltas_int8_minus_fp32": {
+    "ap_small": 0.00063207594250278,
+    "ap_50_95": 0.0003561319030320337,
+    "recall": 0.0027210884353741083,
+    "cpu_p95_ms": -89.00072200015074
+  }
+}

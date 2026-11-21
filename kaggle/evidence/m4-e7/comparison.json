@@ -1,0 +1,133 @@
+{
+  "checkpoint_sha256": "b8cc53299bf4476bf9492e286fd3c6d8422813b9701b972b641c5e1d124ff51c",
+  "calibration_split": "train",
+  "calibration_seed": 42,
+  "calibration_images": 320,
+  "calibration_ids_sha256": "a9a17a2a7223c5a330dbe1d753a9e26038e4b86f280e7147170a8100f663d228",
+  "exports": {
+    "fp32": {
+      "size": 1280,
+      "dataset": {
+        "ids_sha256": "6208d3b8b0831a202f6a378e96ea4d5d45cf6a098e3ebfa5b1a4679c8ed24110",
+        "ground_truth_sha256": "8baa6149657508e53f754e5543ff4529c649d0a8a650c45de5ba92d0b946da37",
+        "audit_sha256": "694f46e76d85b7a229b49f0c0147fb884762a6f48b21079e2f3aadcb27b8d543",
+        "images": 356,
+        "boxes": 2205
+      },
+      "protocol": {
+        "batch": 1,
+        "conf_ap": 0.001,
+        "conf_precision_recall": 0.05,
+        "iou_match": 0.5,
+        "iou_nms_if_used": 0.7,
+        "max_det": 100,
+        "torch_threads": 4,
+        "warmup_images": 10,
+        "inference": "one full square image, YOLO26 end-to-end, native-to-M1 projection",
+        "latency": "CPU preprocessing, inference, postprocessing and coordinate projection, excluding JPEG read"
+      },
+      "runtime": {
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "end2end": true,
+        "openvino_threads": 2,
+        "openvino_precision_hint": "<Type: 'float32'>"
+      },
+      "versions": {
+        "torch": "2.11.0+cpu",
+        "torchvision": "0.26.0+cpu",
+        "ultralytics": "8.4.210",
+        "openvino": "2026.4.1",
+        "nncf": "3.4.0",
+        "pycocotools": "2.0.11",
+        "numpy": "2.1.3",
+        "opencv-python": "4.14.0.94",
+        "psutil": "5.9.5"
+      },
+      "model_sha256": {
+        "candidate.bin": "71bed930ac124a1190845b93a0e36d616ebc8bb3097432717a0a3246974ed68b",
+        "candidate.xml": "6df1c05e6b60e0c0aaf9ad42b80f92e1ffcf024383e9f988e17837e35eb63f09",
+        "metadata.yaml": "3adc6e6b45fa41477effa643c11dca1fdc302d052e2619d3c8a7c166bb644dbf"
+      },
+      "ap_50_95": 0.05135355976990629,
+      "ap_50": 0.15330276442193436,
+      "ap_small": 0.059130963883150096,
+      "precision": 0.14683797764058068,
+      "recall": 0.39909297052154197,
+      "cpu_median_ms": 318.8444794998304,
+      "cpu_p95_ms": 337.85679424988757,
+      "export": {
+        "precision": "fp32",
+        "checkpoint_sha256": "b8cc53299bf4476bf9492e286fd3c6d8422813b9701b972b641c5e1d124ff51c"
+      },
+      "model_bytes": 10329223,
+      "fake_quantize_ops": 0
+    },
+    "int8": {
+      "size": 1280,
+      "dataset": {
+        "ids_sha256": "6208d3b8b0831a202f6a378e96ea4d5d45cf6a098e3ebfa5b1a4679c8ed24110",
+        "ground_truth_sha256": "8baa6149657508e53f754e5543ff4529c649d0a8a650c45de5ba92d0b946da37",
+        "audit_sha256": "694f46e76d85b7a229b49f0c0147fb884762a6f48b21079e2f3aadcb27b8d543",
+        "images": 356,
+        "boxes": 2205
+      },
+      "protocol": {
+        "batch": 1,
+        "conf_ap": 0.001,
+        "conf_precision_recall": 0.05,
+        "iou_match": 0.5,
+        "iou_nms_if_used": 0.7,
+        "max_det": 100,
+        "torch_threads": 4,
+        "warmup_images": 10,
+        "inference": "one full square image, YOLO26 end-to-end, native-to-M1 projection",
+        "latency": "CPU preprocessing, inference, postprocessing and coordinate projection, excluding JPEG read"
+      },
+      "runtime": {
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "end2end": true,
+        "openvino_threads": 2,
+        "openvino_precision_hint": "<Type: 'float32'>"
+      },
+      "versions": {
+        "torch": "2.11.0+cpu",
+        "torchvision": "0.26.0+cpu",
+        "ultralytics": "8.4.210",
+        "openvino": "2026.4.1",
+        "nncf": "3.4.0",
+        "pycocotools": "2.0.11",
+        "numpy": "2.1.3",
+        "opencv-python": "4.14.0.94",
+        "psutil": "5.9.5"
+      },
+      "model_sha256": {
+        "candidate.bin": "3f99a57e5388c7f5a439c935a24e180e807cecaba011a194b76c9e24107c866d",
+        "candidate.xml": "bc505096dad6782929b6c537789dc324f0a884107c2f3c450bf01b0e47c68afb",
+        "metadata.yaml": "8195240e25d1a11002d27fba8dfe7ed845a353b2f19c91308f66240366f5ae46"
+      },
+      "ap_50_95": 0.051709691672938325,
+      "ap_50": 0.15250595312848836,
+      "ap_small": 0.059763039825652876,
+      "precision": 0.1404120443740095,
+      "recall": 0.4018140589569161,
+      "cpu_median_ms": 229.39285800021025,
+      "cpu_p95_ms": 248.85607224973683,
+      "export": {
+        "precision": "int8",
+        "checkpoint_sha256": "b8cc53299bf4476bf9492e286fd3c6d8422813b9701b972b641c5e1d124ff51c"
+      },
+      "model_bytes": 3634441,
+      "fake_quantize_ops": 125
+    }
+  }
+}

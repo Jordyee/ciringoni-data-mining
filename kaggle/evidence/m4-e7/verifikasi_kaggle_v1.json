@@ -1,0 +1,18 @@
+{
+  "notebook": "davejordygerungan/ciringoni-kaggle-m4-e7-reference-checkpoints",
+  "version": 1,
+  "status": "COMPLETE",
+  "verified_at_wib": "2026-11-22T01:37:46+07:00",
+  "training_performed": false,
+  "calibration_images": 320,
+  "validation_images": 356,
+  "validation_boxes": 2205,
+  "lock_sha256": "96ad00cedcf40a62749bfe4fcf5e27f39509df9651e2702efdfb6cd68bbdb2e0",
+  "comparison_sha256": "c42e0455b575d129cb36eb4a8e986c1289ddae1b6480b785cad5000a29841c5c",
+  "csv_sha256": "09e3ba572cb8bd1937453afab4e1ad3eda3143bec17477ecbc984671ac158ace",
+  "verified_ir_sha256": {
+    "candidate.bin": "3f99a57e5388c7f5a439c935a24e180e807cecaba011a194b76c9e24107c866d",
+    "candidate.xml": "bc505096dad6782929b6c537789dc324f0a884107c2f3c450bf01b0e47c68afb",
+    "metadata.yaml": "8195240e25d1a11002d27fba8dfe7ed845a353b2f19c91308f66240366f5ae46"
+  }
+}

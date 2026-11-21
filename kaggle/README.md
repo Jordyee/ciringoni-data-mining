@@ -8,7 +8,7 @@ Notebook replikasi memakai data UTS dengan pembagian tetap. Input pelatihan memu
 | M2 | E2 | Bandingkan native 640 dan 1280 dengan sumber, split, bobot awal dan anggaran pelatihan yang sama. | [Evaluasi historis COMPLETE](#m2-e2-evaluasi-resolusi) · [Program training E2](e2/E2_Kaggle.ipynb) |
 | M2 | E3, E4 | Ukur dampak pelatihan tile dan inferensi SAHI pada validation. | [E3 pilot COMPLETE](#m2-e3-pilot-pelatihan-tile) · [Program E3 native](e3-native/) · [E4 pilot COMPLETE](#m2-e4-pilot-sahi) |
 | M3 | E5, E6 | Bandingkan head P2 dan tanpa mosaic dengan kontrol 640. Tinjau jenis kesalahan. | [Evaluasi historis COMPLETE](#m3-evaluasi-p2-dan-mosaic) · [Training M3 di antrean](https://www.kaggle.com/code/davejordygerungan/ciringoni-m3-e5-p2-and-e6-augmentation) |
-| M4 | E7 dan test | Bandingkan resolusi kandidat, OpenVINO FP32 dan INT8 pada validation. Jalankan test setelah lock dipublikasikan. | [Program E7](m4-e7/) · [Kaggle E7 V1](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-m4-e7-reference-checkpoints) |
+| M4 | E7 dan test | Bandingkan resolusi kandidat, OpenVINO FP32 dan INT8 pada validation. Jalankan test setelah lock dipublikasikan. | [E7 COMPLETE dan lock sebelum test](#m4-e7-dan-lock-sebelum-test) |
 
 ## M1 E0 dan E1
 
@@ -76,3 +76,14 @@ Input test tersimpan di dataset Kaggle privat terpisah. Setelah E7 selesai, publ
 **Save & Run All versi 2 selesai.** E2 menjalankan kembali inferensi, AP-small dan benchmark pada dua checkpoint historis lima epoch. Pada 356 gambar validation, native 640 dan 1280 menghasilkan AP-small 0,02187 dan 0,04262 serta recall 0,27937 dan 0,36281 pada confidence 0,05 dan IoU 0,50. Median CPU empat thread naik dari 100,23 ms menjadi 339,75 ms dan p95 naik dari 111,54 menjadi 382,17 ms. [Notebook Kaggle privat](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-e2-checkpoint-validation) · [Program](e2-validation/) · [CSV dan verifikasi](evidence/e2-validation/)
 
 Kaggle menolak pengajuan training E2 karena kedua slot batch GPU terpakai oleh M1 dan M3 yang mengantre. Hasil versi 2 memakai checkpoint terverifikasi dari eksperimen historis.
+
+## M4 E7 dan lock sebelum test
+
+**Save & Run All versi 1 selesai.** Pada 356 gambar validation dengan 2.205 kotak, native 1280 memenuhi ambang peningkatan terhadap native 640. Kedua checkpoint berasal dari training historis 30 epoch. Kaggle mengekspor FP32 dan INT8, mengalibrasi INT8 pada 320 gambar train, dan mengukur kedua ekspor pada validation. [Notebook Kaggle privat](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-m4-e7-reference-checkpoints) · [Program](m4-e7/) · [Metrik dan fingerprint](evidence/m4-e7/)
+
+| Format native 1280 | AP-small validation | COCO mAP50–95 | Recall tetap | Median CPU | p95 CPU | Ukuran XML + BIN |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| OpenVINO FP32 | 0,05913 | 0,05135 | 0,39909 | 318,84 ms | 337,86 ms | 10,33 MB |
+| OpenVINO INT8 | 0,05976 | 0,05171 | 0,40181 | 229,39 ms | 248,86 ms | 3,63 MB |
+
+INT8 memenuhi ambang dan menurunkan p95 sebesar 89,00 ms. Lock mengikat model, skor validation, protokol inferensi, versi dependensi, konfigurasi CPU dan fingerprint test. Lock diterbitkan di development sebelum pengajuan notebook test. [Lock Kaggle](evidence/m4-e7/test-lock-kaggle.json)

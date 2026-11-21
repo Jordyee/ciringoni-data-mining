@@ -1,0 +1,23 @@
+{
+  "activity": "Historical local training",
+  "trained_on_kaggle": false,
+  "trained_date": "2026-11-18",
+  "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "epochs": 30,
+  "batch": 4,
+  "seed": 42,
+  "runs": {
+    "640": {
+      "path": "runs/E2_control_native_640/weights/best.pt",
+      "best_pt_sha256": "abf824a20c1bd42b216a09882afe94561d271aec72a404a73a39b21ebd4629ee",
+      "epochs_completed": 30,
+      "actual_batch": 4
+    },
+    "1280": {
+      "path": "runs/E2_native_1280/weights/best.pt",
+      "best_pt_sha256": "b8cc53299bf4476bf9492e286fd3c6d8422813b9701b972b641c5e1d124ff51c",
+      "epochs_completed": 30,
+      "actual_batch": 4
+    }
+  }
+}
