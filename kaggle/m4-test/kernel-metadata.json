@@ -1,0 +1,18 @@
+{
+  "id": "davejordygerungan/ciringoni-kaggle-m4-held-out-test",
+  "title": "Ciringoni Kaggle M4 Held Out Test",
+  "code_file": "m4-test.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "davejordygerungan/ciringoni-kaggle-native-test"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [
+    "davejordygerungan/ciringoni-kaggle-m4-e7-reference-checkpoints"
+  ],
+  "model_sources": []
+}

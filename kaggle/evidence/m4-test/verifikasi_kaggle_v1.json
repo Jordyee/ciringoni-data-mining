@@ -1,0 +1,21 @@
+{
+  "notebook": "davejordygerungan/ciringoni-kaggle-m4-held-out-test",
+  "version": 1,
+  "status": "COMPLETE",
+  "private": true,
+  "verified_at_wib": "2026-11-22T01:41:02+07:00",
+  "pre_test_github_commit": "010200666e540a7b425b6be28c7bcb328b8d0191",
+  "lock_sha256": "96ad00cedcf40a62749bfe4fcf5e27f39509df9651e2702efdfb6cd68bbdb2e0",
+  "test_images": 178,
+  "annotated_boxes": 1159,
+  "prediction_count": 17784,
+  "latency_samples": 178,
+  "output_sha256": {
+    "eksperimen.csv": "e4c6d91fc09135a93841b74fd473d81492d5a94a4c272b689e7568f55a3976b0",
+    "test-lock-kaggle.json": "96ad00cedcf40a62749bfe4fcf5e27f39509df9651e2702efdfb6cd68bbdb2e0",
+    "evaluation/inputs.txt": "51ae2634f56dedfe4bcd6c045b28a538b6b1af3c52a49e7429a367574850665b",
+    "evaluation/latency.json": "83b0db0041817c0904000f9cd978943734c8093b45d25be7054a352082a9140d",
+    "evaluation/metrics.json": "16358e432a97c051584b72f41a447d95cbec5c1d51a7893ee0b9fd7638ae517e",
+    "evaluation/predictions.json": "1014faaff93368c46e033b2d272cf137db7c61391790fcfb0139c6d736d67608"
+  }
+}

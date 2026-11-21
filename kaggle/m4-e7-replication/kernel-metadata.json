@@ -1,0 +1,17 @@
+{
+  "id": "davejordygerungan/ciringoni-kaggle-m4-e7-openvino",
+  "title": "Ciringoni Kaggle M4 E7 OpenVINO",
+  "code_file": "m4-reference.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "davejordygerungan/ciringoni-kaggle-native-train-val",
+    "davejordygerungan/ciringoni-kaggle-reference-checkpoints"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

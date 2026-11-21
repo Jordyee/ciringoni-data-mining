@@ -1,0 +1,57 @@
+{
+  "size": 1280,
+  "dataset": {
+    "ids_sha256": "a6d43d6c77913ba3d763d7bb41e1e666e1de5fdfc10803b1a63e93846f5bd7ce",
+    "ground_truth_sha256": "3ddd5121eaf64f66ee4eae6e61e7d80cc23ee4723fcce4c1cbe143a0ff0fb564",
+    "audit_sha256": "25fccb5002d7484559ee229930984e53c7bf005bcd0d75666a5ebf88d1d37572",
+    "images": 178,
+    "boxes": 1159,
+    "archive_sha256": "2a354489909a59f67dfb2f09bd45f72ebf333c740b5715cab0cdd5c6549dbfa0"
+  },
+  "protocol": {
+    "batch": 1,
+    "conf_ap": 0.001,
+    "conf_precision_recall": 0.05,
+    "iou_match": 0.5,
+    "iou_nms_if_used": 0.7,
+    "max_det": 100,
+    "torch_threads": 4,
+    "warmup_images": 10,
+    "inference": "one full square image, YOLO26 end-to-end, native-to-M1 projection",
+    "latency": "CPU preprocessing, inference, postprocessing and coordinate projection, excluding JPEG read"
+  },
+  "runtime": {
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "end2end": true,
+    "openvino_threads": 2,
+    "openvino_precision_hint": "<Type: 'float32'>"
+  },
+  "versions": {
+    "torch": "2.11.0+cpu",
+    "torchvision": "0.26.0+cpu",
+    "ultralytics": "8.4.210",
+    "openvino": "2026.4.1",
+    "nncf": "3.4.0",
+    "pycocotools": "2.0.11",
+    "numpy": "2.1.3",
+    "opencv-python": "4.14.0.94",
+    "psutil": "5.9.5"
+  },
+  "model_sha256": {
+    "candidate.bin": "3f99a57e5388c7f5a439c935a24e180e807cecaba011a194b76c9e24107c866d",
+    "candidate.xml": "bc505096dad6782929b6c537789dc324f0a884107c2f3c450bf01b0e47c68afb",
+    "metadata.yaml": "8195240e25d1a11002d27fba8dfe7ed845a353b2f19c91308f66240366f5ae46"
+  },
+  "ap_50_95": 0.03555268299450892,
+  "ap_50": 0.10743379238694913,
+  "ap_small": 0.02926214465376983,
+  "precision": 0.10965670535934799,
+  "recall": 0.3830888697152718,
+  "cpu_median_ms": 135.9687400000098,
+  "cpu_p95_ms": 141.62210600008507
+}

@@ -8,7 +8,7 @@ Notebook replikasi memakai data UTS dengan pembagian tetap. Input pelatihan memu
 | M2 | E2 | Bandingkan native 640 dan 1280 dengan sumber, split, bobot awal dan anggaran pelatihan yang sama. | [Evaluasi historis COMPLETE](#m2-e2-evaluasi-resolusi) · [Program training E2](e2/E2_Kaggle.ipynb) |
 | M2 | E3, E4 | Ukur dampak pelatihan tile dan inferensi SAHI pada validation. | [E3 pilot COMPLETE](#m2-e3-pilot-pelatihan-tile) · [Program E3 native](e3-native/) · [E4 pilot COMPLETE](#m2-e4-pilot-sahi) |
 | M3 | E5, E6 | Bandingkan head P2 dan tanpa mosaic dengan kontrol 640. Tinjau jenis kesalahan. | [Evaluasi historis COMPLETE](#m3-evaluasi-p2-dan-mosaic) · [Training M3 di antrean](https://www.kaggle.com/code/davejordygerungan/ciringoni-m3-e5-p2-and-e6-augmentation) |
-| M4 | E7 dan test | Bandingkan resolusi kandidat, OpenVINO FP32 dan INT8 pada validation. Jalankan test setelah lock dipublikasikan. | [E7 COMPLETE dan lock sebelum test](#m4-e7-dan-lock-sebelum-test) |
+| M4 | E7 dan test | Bandingkan resolusi kandidat, OpenVINO FP32 dan INT8 pada validation. Jalankan test setelah lock dipublikasikan. | [E7 COMPLETE dan lock sebelum test](#m4-e7-dan-lock-sebelum-test) · [Test final COMPLETE](#m4-test-final) |
 
 ## M1 E0 dan E1
 
@@ -87,3 +87,15 @@ Kaggle menolak pengajuan training E2 karena kedua slot batch GPU terpakai oleh M
 | OpenVINO INT8 | 0,05976 | 0,05171 | 0,40181 | 229,39 ms | 248,86 ms | 3,63 MB |
 
 INT8 memenuhi ambang dan menurunkan p95 sebesar 89,00 ms. Lock mengikat model, skor validation, protokol inferensi, versi dependensi, konfigurasi CPU dan fingerprint test. Lock diterbitkan di development sebelum pengajuan notebook test. [Lock Kaggle](evidence/m4-e7/test-lock-kaggle.json)
+
+## M4 test final
+
+**Save & Run All versi 1 selesai.** Kaggle menguji OpenVINO INT8 native 1280 pada 178 gambar dan 1.159 kotak test. Evaluator memeriksa lock di GitHub dan memverifikasi bobot, ekspor, lingkungan, input serta label sesuai konfigurasi. Output menyimpan prediksi, 178 pengukuran latensi, skor dan salinan lock. [Notebook Kaggle privat](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-m4-held-out-test) · [Program](m4-test/) · [Hasil dan verifikasi](evidence/m4-test/) · [Commit lock sebelum test](https://github.com/Jordyee/ciringoni-data-mining/commit/010200666e540a7b425b6be28c7bcb328b8d0191)
+
+| AP-small | COCO mAP50–95 | AP50 | Presisi | Recall | Median CPU | p95 CPU |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 0,02926 | 0,03555 | 0,10743 | 0,10966 | 0,38309 | 135,97 ms | 141,62 ms |
+
+Presisi dan recall memakai confidence 0,05 serta IoU 0,50. AP-small test lebih rendah daripada validation INT8 0,05976. Satu uji pada pembagian data ini mengukur performa kandidat terkunci.
+
+Saat E7 pertama menunggu penyiapan input, replikasi dengan penyalinan paralel validation dijalankan di Kaggle. Kedua run memilih native 1280 INT8. Test memakai model dari E7 pertama yang selesai dan lolos verifikasi. Replikasi tambahan hanya mengakses train dan validation. [Notebook replikasi](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-m4-e7-openvino) · [CSV replikasi](evidence/m4-e7-replication/)
