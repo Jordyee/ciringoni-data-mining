@@ -1,0 +1,17 @@
+{
+  "id": "davejordygerungan/ciringoni-kaggle-m3-checkpoint-evaluation",
+  "title": "Ciringoni Kaggle M3 Checkpoint Evaluation",
+  "code_file": "m3-reference.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "davejordygerungan/ciringoni-kaggle-processed-train-val",
+    "davejordygerungan/ciringoni-kaggle-reference-checkpoints"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

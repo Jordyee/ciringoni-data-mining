@@ -1,0 +1,14 @@
+{
+  "notebook": "davejordygerungan/ciringoni-kaggle-m3-checkpoint-evaluation",
+  "version": 1,
+  "status": "COMPLETE",
+  "private": true,
+  "verified_at_wib": "2026-11-22T01:19:13+07:00",
+  "training_performed": false,
+  "kaggle_pulled_cell_sources_match": true,
+  "output_sha256": {
+    "eksperimen.csv": "eb715236ba63957f5169536ad0b9db38c6027985027bf3ee1d90ed53cfc863c5",
+    "manifest.json": "d517250a2709879fdd84defe0d4a6ad9ef1804611e7268aeca0019b5802bb3a8",
+    "analisis_kesalahan.csv": "68de35eee9f56356785680829b96defee1e103fe45313fd7d903cf02d5825bf9"
+  }
+}

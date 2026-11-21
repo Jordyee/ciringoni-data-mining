@@ -1,0 +1,4 @@
+run,tp,fp,fn,gt_short_side_lt_8px,tp_short_side_lt_8px
+E0_640,680,5382,1525,120,4
+E5_640_p2,600,5102,1605,120,2
+E6_640_no_mosaic,609,4438,1596,120,2

@@ -1,0 +1,70 @@
+{
+  "source_commit": "ee8c14bd132a07db3dae4bb15de0d8a22f517d60",
+  "initial_weights_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+  "train_images": 1244,
+  "validation_images": 356,
+  "validation_boxes": 2205,
+  "epochs": 5,
+  "batch": 8,
+  "seed": 42,
+  "device": "Intel(R) Xeon(R) CPU @ 2.20GHz",
+  "evaluation_performed_on_kaggle": true,
+  "training_performed_on_kaggle": false,
+  "checkpoint_origin": "Historical 2026-11-17 local training",
+  "torch": "2.11.0+cpu",
+  "ultralytics": "8.4.210",
+  "training": {
+    "E0_640": {
+      "path": "runs/E0_640/weights/best.pt",
+      "best_pt_sha256": "539ac942255e79f39bbfc705c216a685f9c13cd3bb34d4b507fd1a9841925ce7",
+      "epochs_completed": 5,
+      "actual_batch": 8,
+      "weights_transfer": [
+        696,
+        708
+      ]
+    },
+    "E5_640_p2": {
+      "path": "runs/E5_640_p2/weights/best.pt",
+      "best_pt_sha256": "b0a9b0b278626272fa070b2bd3c9e5698d41f725440b87df391bfedf99c7522e",
+      "epochs_completed": 5,
+      "actual_batch": 8,
+      "weights_transfer": [
+        360,
+        902
+      ]
+    },
+    "E6_640_no_mosaic": {
+      "path": "runs/E6_640_no_mosaic/weights/best.pt",
+      "best_pt_sha256": "22a03a0638778ed9731c9d5f041c8d05e29099cf6baecf895c82f244d26d810a",
+      "epochs_completed": 5,
+      "actual_batch": 8,
+      "weights_transfer": [
+        696,
+        708
+      ]
+    }
+  },
+  "matched_control": "E0_640",
+  "choices": [
+    {
+      "run": "E5_640_p2",
+      "delta_vs_E0_640": {
+        "AP-small": -0.0068958733925507006,
+        "mAP50-95": -0.0100144848203541,
+        "recall": -0.036281179138321906
+      },
+      "eligible": false
+    },
+    {
+      "run": "E6_640_no_mosaic",
+      "delta_vs_E0_640": {
+        "AP-small": -0.0006731565459408007,
+        "mAP50-95": -0.001337421165472901,
+        "recall": -0.03219954648526069
+      },
+      "eligible": false
+    }
+  ],
+  "selected_m3_640": "E0_640"
+}

@@ -7,7 +7,7 @@ Notebook replikasi memakai data UTS dengan pembagian tetap. Input pelatihan memu
 | M1 | E0, E1 | Bandingkan YOLO26n dan YOLO26s pada resolusi olahan 640. Verifikasi profil luas kotak, ekspor 1280 dan COCOeval. | [Audit M1 COMPLETE](#m1-audit-data) · [Evaluasi historis COMPLETE](#m1-evaluasi-checkpoint-historis) · [Training M1 di antrean](https://www.kaggle.com/code/davejordygerungan/fp-data-mining-m1-kaggle-rerun) |
 | M2 | E2 | Bandingkan native 640 dan 1280 dengan sumber, split, bobot awal dan anggaran pelatihan yang sama. | [Program E2](e2/E2_Kaggle.ipynb) |
 | M2 | E3, E4 | Ukur dampak pelatihan tile dan inferensi SAHI pada validation. | [E3 pilot COMPLETE](#m2-e3-pilot-pelatihan-tile) · [E4 pilot COMPLETE](#m2-e4-pilot-sahi) |
-| M3 | E5, E6 | Bandingkan head P2 dan tanpa mosaic dengan kontrol 640. Tinjau jenis kesalahan. | Menunggu eksekusi |
+| M3 | E5, E6 | Bandingkan head P2 dan tanpa mosaic dengan kontrol 640. Tinjau jenis kesalahan. | [Evaluasi historis COMPLETE](#m3-evaluasi-p2-dan-mosaic) · [Training M3 di antrean](https://www.kaggle.com/code/davejordygerungan/ciringoni-m3-e5-p2-and-e6-augmentation) |
 | M4 | E7 dan test | Bandingkan resolusi kandidat, OpenVINO FP32 dan INT8 pada validation. Jalankan test setelah lock dipublikasikan. | Menunggu eksekusi |
 
 ## M1 E0 dan E1
@@ -52,3 +52,15 @@ Presisi dan recall memakai confidence 0,05 dan IoU 0,50. Pada pilot ini, AP-smal
 | E1 YOLO26n freeze=10 | 0,02432 | 0,02400 | 0,19246 | 0,13424 | 61,61 ms | 67,57 ms |
 
 M1 mengukur latensi model pada batch 1, empat thread, dan 10 gambar pemanasan. E1 historis menaikkan AP-small 0,00093 dan recall Ultralytics turun 0,04082. Pembandingan YOLO26n dan YOLO26s memakai notebook training baru.
+
+## M3 evaluasi P2 dan mosaic
+
+**Save & Run All versi 1 selesai.** Kaggle CPU menghitung inferensi baru, AP-small, latensi, dan analisis kesalahan dari kontrol E0, head P2 E5, dan varian tanpa mosaic E6. Tiga checkpoint berasal dari pelatihan lima epoch dengan batch 8 dan seed 42 pada 17 November. [Notebook privat](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-m3-checkpoint-evaluation) · [Program evaluasi](m3-validation/) · [CSV dan bukti](evidence/m3-validation/)
+
+| Perlakuan pada 356 gambar validation | AP-small | Recall tetap | Median CPU | p95 CPU |
+| --- | ---: | ---: | ---: | ---: |
+| Kontrol 640 | 0,02407 | 0,30839 | 82,56 ms | 90,70 ms |
+| Head P2 | 0,01717 | 0,27211 | 109,32 ms | 117,64 ms |
+| Tanpa mosaic | 0,02340 | 0,27619 | 80,96 ms | 84,57 ms |
+
+Kontrol terpilih untuk ablation 640. Kontrol mendeteksi 4 dari 120 kotak dengan sisi terpendek di bawah 8 px pada confidence 0,05 dan IoU 0,50. E5 dan E6 masing-masing mendeteksi 2 kotak pada kategori ini. [Program training baru](m3/)
