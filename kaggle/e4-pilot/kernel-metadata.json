@@ -1,0 +1,13 @@
+{
+  "id": "davejordygerungan/fp-data-mining-e4-sahi-rerun",
+  "title": "FP Data Mining E4 SAHI Rerun",
+  "code_file": "e4_sahi.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "davejordygerungan/ciringoni-m2-validasi-e2"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "checkpoint": "/kaggle/input/datasets/davejordygerungan/ciringoni-m2-validasi-e2/1280/best.pt",
+  "checkpoint_sha256": "0bd467aef478ebd26555074030ff653c52cf05ad5380fcbe66057b3c995f264e",
+  "images": 356,
+  "gt_boxes": 2205,
+  "sahi_version": "0.14.0",
+  "full_input": 1280,
+  "tile": 640,
+  "overlap": 0.25,
+  "slices_per_image": 9,
+  "slice_batch": 4,
+  "min_confidence": 0.001,
+  "merge_iou": 0.5,
+  "max_detections_per_image": 100,
+  "device": "cpu",
+  "torch_cpu_threads": 4,
+  "timing_scope": "Per image after JPEG decode, including preprocessing, inference, merging, and coordinate mapping",
+  "full": {
+    "ap_50_95": 0.03607405619035684,
+    "ap_50": 0.12468826946257051,
+    "ap_small": 0.04262355877251644,
+    "precision_conf_0.05_iou_0.5": 0.12759170653907495,
+    "recall_conf_0.05_iou_0.5": 0.36281179138321995,
+    "cpu_median_ms": 381.70945150005764,
+    "cpu_p95_ms": 429.1468405000103
+  },
+  "sahi": {
+    "ap_50_95": 0.03269019675628142,
+    "ap_50": 0.11526602598206889,
+    "ap_small": 0.038944176690678824,
+    "precision_conf_0.05_iou_0.5": 0.11091644204851751,
+    "recall_conf_0.05_iou_0.5": 0.37324263038548755,
+    "cpu_median_ms": 861.3897399999928,
+    "cpu_p95_ms": 1019.4767579999393
+  },
+  "evidence": {
+    "image_id": 19,
+    "full_matched_small": 3,
+    "sahi_matched_small": 3
+  }
+}

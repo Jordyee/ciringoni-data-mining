@@ -1,0 +1,17 @@
+{
+  "notebook": "davejordygerungan/fp-data-mining-e4-sahi-rerun",
+  "version": 1,
+  "status": "COMPLETE",
+  "private": true,
+  "verified_at_wib": "2026-11-22T00:42:46+07:00",
+  "execution": "Kaggle Save & Run All from CLI kernels push",
+  "notebook_sha256": "ac017132494319c28b6660fa29e0f8109fa8cc500eca9efac01296b21f9feb09",
+  "csv_sha256": "2ec796aeef857f231487d68196f5f53ecc274f4e23319950fd211626fbaa3c61",
+  "source_metrics_sha256": "42849e7686840a07fe7744ceac56ce4e6d03caca87cc00cfb4da99ca79662dda",
+  "output_sha256_verified": {
+    "prediksi_full.json": "9da0d74199cfb6ac105956388da3421e5f4472c5b9d81100ebd3db6aa2a5ff8e",
+    "prediksi_sahi.json": "88d333b287dbdf2e61c587564116aaa11c4bf463bd32eba6ecbc655d05969711",
+    "metrik_e4_sahi.json": "42849e7686840a07fe7744ceac56ce4e6d03caca87cc00cfb4da99ca79662dda",
+    "bukti_e4_sahi.png": "4428de50ab1f8ff6ac3e66d68002b86a2df21109bda0f016ac98df57d7937162"
+  }
+}
