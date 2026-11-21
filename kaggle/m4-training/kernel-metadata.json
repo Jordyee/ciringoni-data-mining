@@ -1,0 +1,16 @@
+{
+  "id": "davejordygerungan/ciringoni-kaggle-m4-native-30ep",
+  "title": "Ciringoni Kaggle M4 Native 30ep",
+  "code_file": "m4-train.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": [
+    "davejordygerungan/ciringoni-kaggle-native-train-val"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

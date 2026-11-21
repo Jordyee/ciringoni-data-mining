@@ -1,0 +1,13 @@
+{
+  "id": "davejordygerungan/fp-data-mining-e3-tiling-native",
+  "title": "FP Data Mining E3 Tiling Native",
+  "code_file": "e3_tiling_native.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": [
+    "davejordygerungan/ciringoni-kaggle-native-train-val"
+  ]
+}

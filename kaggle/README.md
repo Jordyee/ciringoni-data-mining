@@ -6,9 +6,9 @@ Notebook replikasi memakai data UTS dengan pembagian tetap. Input pelatihan memu
 | --- | --- | --- | --- |
 | M1 | E0, E1 | Bandingkan YOLO26n dan YOLO26s pada resolusi olahan 640. Verifikasi profil luas kotak, ekspor 1280 dan COCOeval. | [Audit M1 COMPLETE](#m1-audit-data) · [Evaluasi historis COMPLETE](#m1-evaluasi-checkpoint-historis) · [Training M1 di antrean](https://www.kaggle.com/code/davejordygerungan/fp-data-mining-m1-kaggle-rerun) |
 | M2 | E2 | Bandingkan native 640 dan 1280 dengan sumber, split, bobot awal dan anggaran pelatihan yang sama. | [Program E2](e2/E2_Kaggle.ipynb) |
-| M2 | E3, E4 | Ukur dampak pelatihan tile dan inferensi SAHI pada validation. | [E3 pilot COMPLETE](#m2-e3-pilot-pelatihan-tile) · [E4 pilot COMPLETE](#m2-e4-pilot-sahi) |
+| M2 | E3, E4 | Ukur dampak pelatihan tile dan inferensi SAHI pada validation. | [E3 pilot COMPLETE](#m2-e3-pilot-pelatihan-tile) · [Program E3 native](e3-native/) · [E4 pilot COMPLETE](#m2-e4-pilot-sahi) |
 | M3 | E5, E6 | Bandingkan head P2 dan tanpa mosaic dengan kontrol 640. Tinjau jenis kesalahan. | [Evaluasi historis COMPLETE](#m3-evaluasi-p2-dan-mosaic) · [Training M3 di antrean](https://www.kaggle.com/code/davejordygerungan/ciringoni-m3-e5-p2-and-e6-augmentation) |
-| M4 | E7 dan test | Bandingkan resolusi kandidat, OpenVINO FP32 dan INT8 pada validation. Jalankan test setelah lock dipublikasikan. | Menunggu eksekusi |
+| M4 | E7 dan test | Bandingkan resolusi kandidat, OpenVINO FP32 dan INT8 pada validation. Jalankan test setelah lock dipublikasikan. | [Program E7](m4-e7/) · [Kaggle E7 V1](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-m4-e7-reference-checkpoints) |
 
 ## M1 E0 dan E1
 
@@ -64,3 +64,9 @@ M1 mengukur latensi model pada batch 1, empat thread, dan 10 gambar pemanasan. E
 | Tanpa mosaic | 0,02340 | 0,27619 | 80,96 ms | 84,57 ms |
 
 Kontrol terpilih untuk ablation 640. Kontrol mendeteksi 4 dari 120 kotak dengan sisi terpendek di bawah 8 px pada confidence 0,05 dan IoU 0,50. E5 dan E6 masing-masing mendeteksi 2 kotak pada kategori ini. [Program training baru](m3/)
+
+## M4 persiapan validasi dan lock
+
+Kaggle menerima Save & Run All versi 1 untuk E7 dengan dua checkpoint native 30 epoch historis. Notebook menjalankan evaluasi validation, ekspor FP32 dan INT8, dan memilih model menurut ambang di [protokol penutupan](../PROTOKOL_FINAL.md). Kalibrasi INT8 memakai 320 gambar train. Program training native baru tersedia untuk dijalankan ketika slot GPU tersedia. [Program training](m4-training/) · [Notebook E7 privat](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-m4-e7-reference-checkpoints)
+
+Input test tersimpan di dataset Kaggle privat terpisah. Setelah E7 selesai, publikasikan lock dan verifikasi hash pada commit development sebelum notebook test menjalankan inferensi.
