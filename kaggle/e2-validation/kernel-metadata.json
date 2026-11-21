@@ -1,0 +1,13 @@
+{
+  "enable_internet": true,
+  "dataset_sources": [
+    "davejordygerungan/ciringoni-m2-validasi-e2"
+  ],
+  "title": "Ciringoni Kaggle E2 Checkpoint Validation",
+  "enable_gpu": false,
+  "id": "davejordygerungan/ciringoni-kaggle-e2-checkpoint-validation",
+  "language": "python",
+  "is_private": true,
+  "kernel_type": "notebook",
+  "code_file": "E2_Historical_Validation.ipynb"
+}

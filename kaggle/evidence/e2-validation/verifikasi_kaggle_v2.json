@@ -1,0 +1,10 @@
+{
+  "notebook": "davejordygerungan/ciringoni-kaggle-e2-checkpoint-validation",
+  "version": 2,
+  "status": "COMPLETE",
+  "private": true,
+  "verified_at_wib": "2026-11-22T01:31:30+07:00",
+  "training_performed": false,
+  "kaggle_pulled_cell_sources_match": true,
+  "predictions_cover_356_ids_per_run": true
+}

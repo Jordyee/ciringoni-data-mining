@@ -1,0 +1,24 @@
+{
+  "stage": "E2",
+  "training_performed": false,
+  "checkpoint_origin": "Historical native E2, five epochs",
+  "inference_performed": true,
+  "cpu_benchmark_performed": true,
+  "python": "3.13.18",
+  "torch": "2.11.0+cpu",
+  "ultralytics": "8.4.210",
+  "pycocotools": "2.0.11",
+  "cpu_affinity": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "validation_images": 356,
+  "validation_boxes": 2205,
+  "checkpoints_sha256": {
+    "640": "56568daf2c930033058a3b0468f1357069b1110ce2a1e07e705405547f46d34f",
+    "1280": "0bd467aef478ebd26555074030ff653c52cf05ad5380fcbe66057b3c995f264e"
+  },
+  "csv_sha256": "a2476d2c4ef84709badd2e6d994917747356099553f7bb45e84054a338afe184"
+}
