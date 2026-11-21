@@ -102,7 +102,7 @@ Saat E7 pertama menunggu penyiapan input, replikasi dengan penyalinan paralel va
 
 ## Pelatihan baru dengan CPU Kaggle
 
-Setelah antrean GPU M1 dan M3 bertahan sekitar satu jam, Kaggle menerima dua run CPU untuk pelatihan yang berbeda dari checkpoint historis. M1 membandingkan YOLO26n dan YOLO26s selama lima epoch. E3 revisi membandingkan gambar penuh dan tile native 640 dengan anggaran optimizer yang sama. Konfigurasi dan data tiap notebook tersedia di GitHub. Hasil akan dicatat sesudah Save & Run All selesai dan output terverifikasi.
+Setelah antrean GPU M1 dan M3 bertahan sekitar satu jam, Kaggle menerima empat run CPU untuk pelatihan ulang dari bobot awal. M1 membandingkan YOLO26n dan YOLO26s selama lima epoch. E3 revisi membandingkan gambar penuh dan tile native 640 dengan anggaran optimizer yang sama. Konfigurasi dan data tiap notebook tersedia di GitHub. Hasil akan dicatat sesudah Save & Run All selesai dan output terverifikasi.
 
 - [M1 CPU di Kaggle](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-m1-cpu-training) · [Program M1 CPU](m1-cpu-training/)
 - [E3 native CPU di Kaggle](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-e3-native-cpu) · [Program E3 CPU](e3-native-cpu/)
@@ -110,3 +110,7 @@ Setelah antrean GPU M1 dan M3 bertahan sekitar satu jam, Kaggle menerima dua run
 - [M3 CPU di Kaggle](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-m3-cpu-training) · [Program M3 CPU](m3-cpu-training/)
 
 E2 melatih ulang pasangan 640 dan 1280 dari bobot awal sama selama lima epoch, batch 4 dan seed 42. M3 melatih kontrol, P2 dan tanpa mosaic pada olahan 640 selama lima epoch, batch 8 dan seed 42.
+
+## M2 revisi inferensi SAHI
+
+Kaggle menerima Save & Run All versi 1 untuk tiga perlakuan pada bobot E2 historis yang sama. Kontrol memproses gambar penuh 1280. Perlakuan memakai tile 640 dengan overlap 20%, lalu menguji opsi penggabungan prediksi gambar penuh pada input 640. Ketiganya dinilai pada 356 gambar validation dan 2.205 kotak. Benchmark memakai 100 gambar yang sama dan empat thread. [Notebook Kaggle privat](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-e4-sahi-20) · [Program](e4-revised/)

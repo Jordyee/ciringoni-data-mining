@@ -1,0 +1,14 @@
+{
+  "id": "davejordygerungan/ciringoni-kaggle-e4-sahi-20",
+  "title": "Ciringoni Kaggle E4 SAHI 20",
+  "code_file": "e4_sahi_revisi.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "davejordygerungan/ciringoni-m2-validasi-e2"
+  ],
+  "kernel_sources": []
+}
