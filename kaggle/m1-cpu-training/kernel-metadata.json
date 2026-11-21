@@ -1,0 +1,13 @@
+{
+  "code_file": "M1_Kaggle.ipynb",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "dataset_sources": [
+    "davejordygerungan/ciringoni-kaggle-processed-train-val"
+  ],
+  "title": "Ciringoni Kaggle M1 CPU Training",
+  "id": "davejordygerungan/ciringoni-kaggle-m1-cpu-training",
+  "language": "python",
+  "enable_gpu": false,
+  "enable_internet": true
+}

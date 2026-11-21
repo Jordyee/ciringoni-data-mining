@@ -99,3 +99,10 @@ INT8 memenuhi ambang dan menurunkan p95 sebesar 89,00 ms. Lock mengikat model, s
 Presisi dan recall memakai confidence 0,05 serta IoU 0,50. AP-small test lebih rendah daripada validation INT8 0,05976. Satu uji pada pembagian data ini mengukur performa kandidat terkunci.
 
 Saat E7 pertama menunggu penyiapan input, replikasi dengan penyalinan paralel validation dijalankan di Kaggle. Kedua run memilih native 1280 INT8. Test memakai model dari E7 pertama yang selesai dan lolos verifikasi. Replikasi tambahan hanya mengakses train dan validation. [Notebook replikasi](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-m4-e7-openvino) · [CSV replikasi](evidence/m4-e7-replication/)
+
+## Pelatihan baru dengan CPU Kaggle
+
+Setelah antrean GPU M1 dan M3 bertahan sekitar satu jam, Kaggle menerima dua run CPU untuk pelatihan yang berbeda dari checkpoint historis. M1 membandingkan YOLO26n dan YOLO26s selama lima epoch. E3 revisi membandingkan gambar penuh dan tile native 640 dengan anggaran optimizer yang sama. Konfigurasi dan data tiap notebook tersedia di GitHub. Hasil akan dicatat sesudah Save & Run All selesai dan output terverifikasi.
+
+- [M1 CPU di Kaggle](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-m1-cpu-training) · [Program M1 CPU](m1-cpu-training/)
+- [E3 native CPU di Kaggle](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-e3-native-cpu) · [Program E3 CPU](e3-native-cpu/)
