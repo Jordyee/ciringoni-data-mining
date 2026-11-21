@@ -4,7 +4,7 @@ Notebook replikasi memakai data UTS dengan pembagian tetap. Input pelatihan memu
 
 | Minggu | Eksperimen | Pertanyaan | Program dan bukti |
 | --- | --- | --- | --- |
-| M1 | E0, E1 | Bandingkan YOLO26n dan YOLO26s pada resolusi olahan 640. Verifikasi profil luas kotak, ekspor 1280 dan COCOeval. | [Audit M1 COMPLETE](#m1-audit-data) · [Training M1 di antrean](https://www.kaggle.com/code/davejordygerungan/fp-data-mining-m1-kaggle-rerun) |
+| M1 | E0, E1 | Bandingkan YOLO26n dan YOLO26s pada resolusi olahan 640. Verifikasi profil luas kotak, ekspor 1280 dan COCOeval. | [Audit M1 COMPLETE](#m1-audit-data) · [Evaluasi historis COMPLETE](#m1-evaluasi-checkpoint-historis) · [Training M1 di antrean](https://www.kaggle.com/code/davejordygerungan/fp-data-mining-m1-kaggle-rerun) |
 | M2 | E2 | Bandingkan native 640 dan 1280 dengan sumber, split, bobot awal dan anggaran pelatihan yang sama. | [Program E2](e2/E2_Kaggle.ipynb) |
 | M2 | E3, E4 | Ukur dampak pelatihan tile dan inferensi SAHI pada validation. | [E3 pilot COMPLETE](#m2-e3-pilot-pelatihan-tile) · [E4 pilot COMPLETE](#m2-e4-pilot-sahi) |
 | M3 | E5, E6 | Bandingkan head P2 dan tanpa mosaic dengan kontrol 640. Tinjau jenis kesalahan. | Menunggu eksekusi |
@@ -41,3 +41,14 @@ Presisi dan recall memakai confidence 0,05 dan IoU 0,50. SAHI meningkatkan recal
 | Tile 384 | 0,00339 | 0,00242 | 0,02648 | 0,11565 | 83,81 ms | 89,72 ms |
 
 Presisi dan recall memakai confidence 0,05 dan IoU 0,50. Pada pilot ini, AP-small dan recall tile 384 lebih rendah. Eksperimen E3 revisi memakai tile 640 dari data native 1280 dengan overlap 20% dan visibilitas kotak minimal 50%. [Keluaran Kaggle pilot](https://www.kaggle.com/code/davejordygerungan/fp-data-mining-e3-pilot-validasi/output)
+
+## M1 evaluasi checkpoint historis
+
+**Save & Run All versi 1 selesai.** Kaggle CPU menjalankan inferensi, COCOeval, dan benchmark baru untuk checkpoint E0 YOLO26n dan E1 YOLO26n freeze=10 dari pelatihan 11 November. Kedua run memakai 356 gambar validation. Unduhan memuat hasil per gambar, latensi dan hash bobot. [Notebook Kaggle privat](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-m1-historical-validation) · [Program](m1-validation/M1_Historical_Validation.ipynb) · [CSV dan bukti verifikasi](evidence/m1-validation)
+
+| Perlakuan historis | AP-small | mAP50–95 Ultralytics | Presisi Ultralytics | Recall Ultralytics | Median CPU | p95 CPU |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| E0 YOLO26n 640 | 0,02340 | 0,02221 | 0,19078 | 0,17506 | 61,39 ms | 68,25 ms |
+| E1 YOLO26n freeze=10 | 0,02432 | 0,02400 | 0,19246 | 0,13424 | 61,61 ms | 67,57 ms |
+
+M1 mengukur latensi model pada batch 1, empat thread, dan 10 gambar pemanasan. E1 historis menaikkan AP-small 0,00093 dan recall Ultralytics turun 0,04082. Pembandingan YOLO26n dan YOLO26s memakai notebook training baru.

@@ -1,0 +1,19 @@
+{
+  "stage": "M1",
+  "training_performed": false,
+  "checkpoint_origin": "11 November 2026, RTX 4060 Laptop, YOLO26n",
+  "epochs": 5,
+  "batch": 8,
+  "seed": 42,
+  "device": "Kaggle CPU",
+  "python": "3.13.18",
+  "torch": "2.11.0+cpu",
+  "ultralytics": "8.4.210",
+  "pycocotools": "2.0.11",
+  "input_ground_truth_sha256": "8baa6149657508e53f754e5543ff4529c649d0a8a650c45de5ba92d0b946da37",
+  "coco_sha256": "8baa6149657508e53f754e5543ff4529c649d0a8a650c45de5ba92d0b946da37",
+  "checkpoints_sha256": {
+    "E0": "270bb67e7ba5ed9fc1e8bfec52cd445453c71c841edba0f4f85fae0131e672a9",
+    "E1": "162184f1a9220d5abea499ba203c2d3506670607ef8aab83edbeba068ca93889"
+  }
+}

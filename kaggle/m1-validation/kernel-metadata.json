@@ -1,0 +1,14 @@
+{
+  "dataset_sources": [
+    "davejordygerungan/ciringoni-kaggle-processed-train-val",
+    "davejordygerungan/ciringoni-m1-historical-checkpoints"
+  ],
+  "code_file": "M1_Historical_Validation.ipynb",
+  "language": "python",
+  "enable_gpu": false,
+  "enable_internet": true,
+  "title": "Ciringoni Kaggle M1 Historical Validation",
+  "is_private": true,
+  "id": "davejordygerungan/ciringoni-kaggle-m1-historical-validation",
+  "kernel_type": "notebook"
+}

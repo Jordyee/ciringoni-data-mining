@@ -1,0 +1,22 @@
+{
+  "notebook": "davejordygerungan/ciringoni-kaggle-m1-historical-validation",
+  "version": 1,
+  "status": "COMPLETE",
+  "verified_at_wib": "2026-11-22T01:08:20+07:00",
+  "private": true,
+  "training_performed": false,
+  "predictions_cover_356_ids_per_run": true,
+  "kaggle_pulled_cell_sources_match": true,
+  "submitted_notebook_sha256": "d52d9e77f0abcd5c5e31e4bf97759e124cef06b080c82df226897b1280208ca8",
+  "output_sha256": {
+    "eksperimen.csv": "79d09ac59e6909033d9783bd7ebbf3ae4a055e1589b6275ea824693dce9ed69f",
+    "latensi_cpu.json": "0b787a9bc1065dc9261c468a98d382582a45fb6af245c0ca8081ab2b8dc4bde0",
+    "run.json": "85f8bfab840e76696884bb0a02c6f265dd8272462360b682cd3143331a6b5239",
+    "runs/E0/cocoeval_val.json": "afefba56b29cde3307aa437f610d0b82175bc84ed0afb7d1141a064f66e514e0",
+    "runs/E0/coco_val_predictions.json": "9b1d73e1aff5a0c92ab672d5094afd90c6cf0e81bece1df1c224cc67abe26c50",
+    "runs/E0/latensi_cpu.csv": "c2b1a50cb7084446a1967aa5ae1b62b0251260269ab133dd8bae590904a8ca91",
+    "runs/E1/cocoeval_val.json": "fd44b6c3a2bd2a426b02082ffe1a0f70820c93c7b8271bf29611fd6397721f1f",
+    "runs/E1/coco_val_predictions.json": "05e033329c7d6a1386007d5788a0909c117c7ef16a6099ed18844af378d4e99c",
+    "runs/E1/latensi_cpu.csv": "eae732ee38b14b274ccfb9c699824945e643f5563a9051677e5a022df74d5389"
+  }
+}
