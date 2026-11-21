@@ -13,5 +13,7 @@
     "prediksi_sahi.json": "88d333b287dbdf2e61c587564116aaa11c4bf463bd32eba6ecbc655d05969711",
     "metrik_e4_sahi.json": "42849e7686840a07fe7744ceac56ce4e6d03caca87cc00cfb4da99ca79662dda",
     "bukti_e4_sahi.png": "4428de50ab1f8ff6ac3e66d68002b86a2df21109bda0f016ac98df57d7937162"
-  }
+  },
+  "kaggle_pulled_notebook_sha256": "ef79ea1532beed694c240a91a7f3239888eaa3b8fe1b320511228848e36065ff",
+  "kaggle_pulled_cell_sources_match": true
 }

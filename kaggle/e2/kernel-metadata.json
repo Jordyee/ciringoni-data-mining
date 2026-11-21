@@ -1,0 +1,13 @@
+{
+  "enable_gpu": true,
+  "language": "python",
+  "dataset_sources": [
+    "davejordygerungan/ciringoni-kaggle-native-train-val"
+  ],
+  "code_file": "E2_Kaggle.ipynb",
+  "id": "davejordygerungan/fp-data-mining-e2-training-rerun",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "title": "FP Data Mining E2 Training Rerun",
+  "enable_internet": true
+}
