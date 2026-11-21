@@ -1,0 +1,14 @@
+{
+  "asal": "Ekspor 1280 dari dataset yang sebelumnya sudah diubah ukurannya.",
+  "total_gambar": 1600,
+  "split": {
+    "train": 1244,
+    "val": 356
+  },
+  "total_box": 12745,
+  "resolusi": [
+    1280,
+    1280
+  ],
+  "arsip": "/kaggle/working/fp_dm_m1/dataset_1280.zip"
+}

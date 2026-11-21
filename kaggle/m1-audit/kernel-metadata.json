@@ -1,0 +1,13 @@
+{
+  "language": "python",
+  "title": "Ciringoni Kaggle M1 Audit",
+  "dataset_sources": [
+    "davejordygerungan/ciringoni-kaggle-processed-train-val"
+  ],
+  "code_file": "M1_Audit_Kaggle.ipynb",
+  "kernel_type": "notebook",
+  "enable_gpu": false,
+  "enable_internet": true,
+  "is_private": true,
+  "id": "davejordygerungan/ciringoni-kaggle-m1-audit"
+}

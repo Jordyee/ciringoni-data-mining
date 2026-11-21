@@ -1,0 +1,15 @@
+{
+  "notebook": "davejordygerungan/ciringoni-kaggle-m1-audit",
+  "version": 1,
+  "status": "COMPLETE",
+  "private": true,
+  "verified_at_wib": "2026-11-22T01:04:46+07:00",
+  "training_performed": false,
+  "output_sha256": {
+    "ringkasan_profil_box.csv": "cdf15c6c6282897642988e40908fab53e506bee562655efb10ed389c19712c81",
+    "ringkasan_ekspor_1280.json": "3cce416519218e084964a892fe1381233dee80e53c4ffce3de5c20c82b25f70f",
+    "uji_cocoeval.json": "23d88e348b78ba3b1d63ff4baea2be5b9ed02b2d39e75c7719fbad4fb2d0e227",
+    "coco_val_gt.json": "8baa6149657508e53f754e5543ff4529c649d0a8a650c45de5ba92d0b946da37"
+  },
+  "large_output_listed": "fp_dm_m1/dataset_1280.zip"
+}

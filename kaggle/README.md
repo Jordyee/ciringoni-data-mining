@@ -4,7 +4,7 @@ Notebook replikasi memakai data UTS dengan pembagian tetap. Input pelatihan memu
 
 | Minggu | Eksperimen | Pertanyaan | Program dan bukti |
 | --- | --- | --- | --- |
-| M1 | E0, E1 | Bandingkan YOLO26n dan YOLO26s pada resolusi olahan 640. Verifikasi profil luas kotak, ekspor 1280 dan COCOeval. | [Program M1](m1/M1_Kaggle.ipynb) · [Kaggle V1 dijadwalkan](https://www.kaggle.com/code/davejordygerungan/fp-data-mining-m1-kaggle-rerun) |
+| M1 | E0, E1 | Bandingkan YOLO26n dan YOLO26s pada resolusi olahan 640. Verifikasi profil luas kotak, ekspor 1280 dan COCOeval. | [Audit M1 COMPLETE](#m1-audit-data) · [Training M1 di antrean](https://www.kaggle.com/code/davejordygerungan/fp-data-mining-m1-kaggle-rerun) |
 | M2 | E2 | Bandingkan native 640 dan 1280 dengan sumber, split, bobot awal dan anggaran pelatihan yang sama. | [Program E2](e2/E2_Kaggle.ipynb) |
 | M2 | E3, E4 | Ukur dampak pelatihan tile dan inferensi SAHI pada validation. | [E4 pilot COMPLETE](#m2-e4-pilot-sahi) |
 | M3 | E5, E6 | Bandingkan head P2 dan tanpa mosaic dengan kontrol 640. Tinjau jenis kesalahan. | Menunggu eksekusi |
@@ -26,3 +26,7 @@ Kaggle menerima Save & Run All versi 1. Metrik validation dan hash checkpoint ak
 | SAHI | 0,03894 | 0,03269 | 0,11092 | 0,37324 | 861,39 ms | 1.019,48 ms |
 
 Presisi dan recall memakai confidence 0,05 dan IoU 0,50. SAHI meningkatkan recall 0,01043 dengan penurunan AP-small 0,00368 dan peningkatan median CPU 479,68 ms pada Intel Xeon dengan empat thread. Kaggle Output menyimpan prediksi kedua metode, contoh visual, metrik asli dan manifest hash. CSV menyajikan ulang angka dari JSON metrik. [Keluaran Kaggle](https://www.kaggle.com/code/davejordygerungan/fp-data-mining-e4-sahi-rerun/output)
+
+## M1 audit data
+
+**Save & Run All versi 1 selesai.** Kaggle memeriksa 1.244 gambar train dan 356 gambar validation, dengan 10.540 dan 2.205 kotak. Terdapat 756 kotak train (7,17%) dan 120 kotak validation (5,44%) dengan sisi terpendek di bawah 8 px pada acuan 640. Uji COCOeval dengan prediksi sempurna menghasilkan AP-small 1,0. Kaggle menyimpan ekspor 1280 dari 1.600 gambar olahan beserta ringkasan dan anotasi. [Notebook Kaggle privat](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-m1-audit) · [Program](m1-audit/M1_Audit_Kaggle.ipynb) · [Ringkasan dan verifikasi](evidence/m1-audit)
