@@ -106,3 +106,7 @@ Setelah antrean GPU M1 dan M3 bertahan sekitar satu jam, Kaggle menerima dua run
 
 - [M1 CPU di Kaggle](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-m1-cpu-training) · [Program M1 CPU](m1-cpu-training/)
 - [E3 native CPU di Kaggle](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-e3-native-cpu) · [Program E3 CPU](e3-native-cpu/)
+- [E2 native CPU di Kaggle](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-e2-cpu-training) · [Program E2 CPU](e2-cpu-training/)
+- [M3 CPU di Kaggle](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-m3-cpu-training) · [Program M3 CPU](m3-cpu-training/)
+
+E2 melatih ulang pasangan 640 dan 1280 dari bobot awal sama selama lima epoch, batch 4 dan seed 42. M3 melatih kontrol, P2 dan tanpa mosaic pada olahan 640 selama lima epoch, batch 8 dan seed 42.
