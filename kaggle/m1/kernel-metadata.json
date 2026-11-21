@@ -1,0 +1,13 @@
+{
+  "code_file": "M1_Kaggle.ipynb",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "dataset_sources": [
+    "davejordygerungan/ciringoni-kaggle-processed-train-val"
+  ],
+  "title": "FP Data Mining M1 Kaggle Rerun",
+  "id": "davejordygerungan/fp-data-mining-m1-kaggle-rerun",
+  "language": "python",
+  "enable_gpu": true,
+  "enable_internet": true
+}

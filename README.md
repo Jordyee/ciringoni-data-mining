@@ -12,6 +12,8 @@ Final project untuk mendeteksi area kecil kerusakan daun jagung akibat Fall Army
 
 Presisi dan recall menggunakan confidence 0,05 dan IoU 0,50. Test dijalankan pada konfigurasi yang sudah dikunci. Skor menunjukkan banyak kotak terlewat bahkan setelah seleksi validation. Proyek mengukur kinerja pada satu koleksi citra dan satu seed. [Lock sebelum test](test-lock.json) · [Metrik lengkap](Data_Mining_Ciringoni_M1/hasil_m2/evaluasi/eksperimen_final.csv) · [Notebook M4](Data_Mining_Ciringoni_M1/FP_Data_Mining_M4_Penutupan.ipynb)
 
+[Replikasi Kaggle dan indeks bukti mingguan](kaggle/README.md).
+
 ## Mulai bekerja
 
 ```powershell
