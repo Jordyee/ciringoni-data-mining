@@ -6,7 +6,7 @@ Notebook replikasi memakai data UTS dengan pembagian tetap. Input pelatihan memu
 | --- | --- | --- | --- |
 | M1 | E0, E1 | Bandingkan YOLO26n dan YOLO26s pada resolusi olahan 640. Verifikasi profil luas kotak, ekspor 1280 dan COCOeval. | [Audit M1 COMPLETE](#m1-audit-data) · [Training M1 di antrean](https://www.kaggle.com/code/davejordygerungan/fp-data-mining-m1-kaggle-rerun) |
 | M2 | E2 | Bandingkan native 640 dan 1280 dengan sumber, split, bobot awal dan anggaran pelatihan yang sama. | [Program E2](e2/E2_Kaggle.ipynb) |
-| M2 | E3, E4 | Ukur dampak pelatihan tile dan inferensi SAHI pada validation. | [E4 pilot COMPLETE](#m2-e4-pilot-sahi) |
+| M2 | E3, E4 | Ukur dampak pelatihan tile dan inferensi SAHI pada validation. | [E3 pilot COMPLETE](#m2-e3-pilot-pelatihan-tile) · [E4 pilot COMPLETE](#m2-e4-pilot-sahi) |
 | M3 | E5, E6 | Bandingkan head P2 dan tanpa mosaic dengan kontrol 640. Tinjau jenis kesalahan. | Menunggu eksekusi |
 | M4 | E7 dan test | Bandingkan resolusi kandidat, OpenVINO FP32 dan INT8 pada validation. Jalankan test setelah lock dipublikasikan. | Menunggu eksekusi |
 
@@ -30,3 +30,14 @@ Presisi dan recall memakai confidence 0,05 dan IoU 0,50. SAHI meningkatkan recal
 ## M1 audit data
 
 **Save & Run All versi 1 selesai.** Kaggle memeriksa 1.244 gambar train dan 356 gambar validation, dengan 10.540 dan 2.205 kotak. Terdapat 756 kotak train (7,17%) dan 120 kotak validation (5,44%) dengan sisi terpendek di bawah 8 px pada acuan 640. Uji COCOeval dengan prediksi sempurna menghasilkan AP-small 1,0. Kaggle menyimpan ekspor 1280 dari 1.600 gambar olahan beserta ringkasan dan anotasi. [Notebook Kaggle privat](https://www.kaggle.com/code/davejordygerungan/ciringoni-kaggle-m1-audit) · [Program](m1-audit/M1_Audit_Kaggle.ipynb) · [Ringkasan dan verifikasi](evidence/m1-audit)
+
+## M2 E3 pilot pelatihan tile
+
+**Save & Run All versi 1 selesai.** Kaggle menghitung ulang prediksi, metrik, dan latensi CPU pada 356 gambar validation olahan 640 dan 2.205 kotak. Kedua checkpoint historis memproses 620 langkah optimizer. Kontrol dilatih dengan gambar penuh dan perlakuan memakai tile 384 dari sumber olahan 640. Evaluasi keduanya memakai gambar utuh. [Notebook Kaggle privat](https://www.kaggle.com/code/davejordygerungan/fp-data-mining-e3-pilot-validasi) · [Program](e3-pilot/e3_pilot_validasi.ipynb) · [CSV dan bukti verifikasi](evidence/e3-pilot)
+
+| Pelatihan historis | AP-small | mAP50–95 Ultralytics | Presisi | Recall | Median CPU | p95 CPU |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Gambar penuh | 0,01429 | 0,00839 | 0,04927 | 0,24671 | 87,57 ms | 101,66 ms |
+| Tile 384 | 0,00339 | 0,00242 | 0,02648 | 0,11565 | 83,81 ms | 89,72 ms |
+
+Presisi dan recall memakai confidence 0,05 dan IoU 0,50. Pada pilot ini, AP-small dan recall tile 384 lebih rendah. Eksperimen E3 revisi memakai tile 640 dari data native 1280 dengan overlap 20% dan visibilitas kotak minimal 50%. [Keluaran Kaggle pilot](https://www.kaggle.com/code/davejordygerungan/fp-data-mining-e3-pilot-validasi/output)

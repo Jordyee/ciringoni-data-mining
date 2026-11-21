@@ -1,0 +1,14 @@
+{
+  "id": "davejordygerungan/fp-data-mining-e3-pilot-validasi",
+  "title": "FP Data Mining E3 Pilot Validasi",
+  "code_file": "e3_pilot_validasi.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "davejordygerungan/ciringoni-kaggle-processed-train-val",
+    "davejordygerungan/ciringoni-e3-pilot-checkpoints"
+  ]
+}

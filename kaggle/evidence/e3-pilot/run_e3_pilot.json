@@ -1,0 +1,50 @@
+{
+  "experiment": "E3 historical processed 640 pilot",
+  "activity": [
+    "Kaggle CPU inference",
+    "COCO validation",
+    "Kaggle CPU latency"
+  ],
+  "training_performed_in_this_run": false,
+  "source_commit": "ee8c14bd132a07db3dae4bb15de0d8a22f517d60",
+  "source_sha256": {
+    "hasil_m2/evaluasi_mosaic.py": "6968d591f7262d6d8d7842a0a3d2dd504549b973f3893c1ea11465c1c2e1d755",
+    "FP_Data_Mining_M1_Eksekusi_Lokal.ipynb": "abd0eb1219fd684bef3dc147ecc762f2aa4c4d6be38cd22abf46beba0d53b81f"
+  },
+  "historical_training": {
+    "E3_control_full_640": {
+      "checkpoint_sha256": "a03c79c060dd3ceb3cc9e0523890d69477b5da57f8a1a255f5852e685a8d18bb",
+      "historical_epochs": 4,
+      "historical_optimizer_steps": 620
+    },
+    "E3_tile384_640": {
+      "checkpoint_sha256": "0da9c0da8f514b36416f7a5029d5622fc2c6fbccc39747687de86a0181a3354f",
+      "historical_epochs": 1,
+      "historical_optimizer_steps": 620
+    }
+  },
+  "ground_truth_sha256": "8baa6149657508e53f754e5543ff4529c649d0a8a650c45de5ba92d0b946da37",
+  "images": 356,
+  "gt_boxes": 2205,
+  "cpu_logical_affinity": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "python": "3.13.18",
+  "cpu": "Intel(R) Xeon(R) CPU @ 2.20GHz",
+  "versions": {
+    "ultralytics": "8.4.210",
+    "pycocotools": "2.0.11",
+    "torch": "2.11.0+cpu",
+    "torchvision": "0.26.0+cpu"
+  },
+  "outputs_sha256": {
+    "E3_control_full_640/coco_val_predictions.json": "32f996c3068b5881c7bbb61919815ed42f0ce105bc0a578c24237193b8144b34",
+    "E3_control_full_640/metrik.json": "eb15d4de2a1117ed3a29a443df02ab8bfc95275e6fd08903d78cd41c7a50e387",
+    "E3_tile384_640/coco_val_predictions.json": "411edfb9908b55e213632e11e3a1f932088b441baf52ed82f2d9cd5ca2f49240",
+    "E3_tile384_640/metrik.json": "d85aa3a93fd9ee1894a69402745d94d58bcabcae32188868ee3d5844667da6aa",
+    "hasil_e3_pilot.csv": "3fce68f7b4cdf77e5b67b90a1bac3c43a6c376582c2f523cbb31def02b3f9191"
+  }
+}

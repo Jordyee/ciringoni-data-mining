@@ -3,3 +3,4 @@
 /kaggle/**/*.ipynb text eol=lf
 /kaggle/e4-pilot/e4_sahi.ipynb -text whitespace=cr-at-eol
 /kaggle/evidence/** -text whitespace=cr-at-eol
+/kaggle/e3-pilot/e3_pilot_validasi.ipynb -text whitespace=cr-at-eol

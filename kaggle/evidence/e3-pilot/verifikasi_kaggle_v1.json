@@ -1,0 +1,18 @@
+{
+  "notebook": "davejordygerungan/fp-data-mining-e3-pilot-validasi",
+  "version": 1,
+  "status": "COMPLETE",
+  "private": true,
+  "verified_at_wib": "2026-11-22T01:06:42+07:00",
+  "execution": "Kaggle Save & Run All from CLI kernels push",
+  "notebook_sha256": "b19fb991cdff6676e80dd5235ace20533064c1599467f9ffc21deefad7634818",
+  "kaggle_pulled_notebook_sha256": "b59b06d508360c5ad7debad7227cc5f2efe15f5694bc01f58b41a2e95b98eb5c",
+  "kaggle_pulled_cell_sources_match": true,
+  "output_sha256_verified": {
+    "E3_control_full_640/coco_val_predictions.json": "32f996c3068b5881c7bbb61919815ed42f0ce105bc0a578c24237193b8144b34",
+    "E3_control_full_640/metrik.json": "eb15d4de2a1117ed3a29a443df02ab8bfc95275e6fd08903d78cd41c7a50e387",
+    "E3_tile384_640/coco_val_predictions.json": "411edfb9908b55e213632e11e3a1f932088b441baf52ed82f2d9cd5ca2f49240",
+    "E3_tile384_640/metrik.json": "d85aa3a93fd9ee1894a69402745d94d58bcabcae32188868ee3d5844667da6aa",
+    "hasil_e3_pilot.csv": "3fce68f7b4cdf77e5b67b90a1bac3c43a6c376582c2f523cbb31def02b3f9191"
+  }
+}
